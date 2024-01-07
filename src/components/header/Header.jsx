@@ -1,20 +1,39 @@
-import React from 'react'
-import './header.css'
-import CTA from './CTA'
-import ME from '../../assets/PUTIH-removebg-preview.png'
-import HeaderSocials from './HeaderSocials'
-import Typical from 'react-typical';
+import React, { useState } from 'react';
+import { useSpring, animated } from 'react-spring';
+import './header.css';
+import CTA from './CTA';
+import ME from '../../assets/PUTIH-removebg-preview.png';
+import HeaderSocials from './HeaderSocials';
 
 const Header = () => {
+  const jobTitles = ['Fullstack Web Developer', 'Backend Engineer'];
+  const [currentJobIndex, setCurrentJobIndex] = useState(0);
+
+  const props = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    reset: true,
+    onRest: () => {
+      setTimeout(() => {
+        setCurrentJobIndex((prevIndex) => (prevIndex + 1) % jobTitles.length);
+      }, 1000);
+    },
+  });
+
   return (
     <header>
-      <div className="container header__container" id='home'>
+      <div className="container header__container" id="home">
         <h5>Hello I'm</h5>
         <h1>Muhammad Yogi</h1>
         <div className="profile_details">
-          <h3 className="text-light">
-            <Typical loop={Infinity} steps={['Fullstack Web Developer', 1000, 'Backend Engineer', 1000]} />
-          </h3>
+          <animated.h3 className="text-light" style={props}>
+            {jobTitles.map((title, index) => (
+              <span key={index} style={{ display: index === currentJobIndex ? 'inline' : 'none' }}>
+                {title}
+                {index < jobTitles.length - 1 && ' '}
+              </span>
+            ))}
+          </animated.h3>
         </div>
         <CTA />
         <HeaderSocials />
@@ -25,10 +44,12 @@ const Header = () => {
           </div>
         </div>
 
-        <a href="#contact" className='scroll__down'>Scroll Down</a>
+        <a href="#contact" className="scroll__down">
+          Scroll Down
+        </a>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
