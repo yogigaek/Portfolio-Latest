@@ -1,0 +1,28 @@
+.container-detailproject {
+    width: var(--container-width-sm);
+    margin: 0 auto;
+}
+
+.detailproject_header {
+    padding-top: 1.5rem;
+}
+
+.detailproject_header>h2,
+.detailproject_header>h5 {
+    text-align: center;
+}
+
+.detailproject_header>p {
+    padding-top: 2.5rem;
+}
+
+.detailproject_content {
+    padding-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+}
+
+.content_item>h3 {
+    text-align: center;
+}
