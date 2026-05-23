@@ -87,7 +87,7 @@ export default function Hero() {
             >
               {yearsOfExperience} years delivering mission-critical financial & healthcare systems at enterprise scale.
               Across cloud-native architectures —{' '}
-              <span className="text-text-primary font-medium">100+ production APIs</span>
+              <span className="text-text-primary font-medium">150+ production APIs</span>
               {', '}
               <span className="text-text-primary font-medium">40+ system integrations</span>.
             </motion.p>
@@ -176,7 +176,7 @@ export default function Hero() {
                 className="hidden sm:block absolute -left-4 bottom-12 bg-surface border border-border rounded-2xl px-4 py-3 shadow-xl"
               >
                 <p className="text-xs text-text-muted font-medium">Production APIs</p>
-                <p className="text-2xl font-display font-bold gradient-text-accent">100+</p>
+                <p className="text-2xl font-display font-bold gradient-text-accent">150+</p>
               </motion.div>
             </div>
           </motion.div>

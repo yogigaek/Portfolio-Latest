@@ -81,7 +81,7 @@ export const stats: StatCard[] = [
     description: 'Building enterprise-grade systems',
   },
   {
-    value: '100',
+    value: '150',
     suffix: '+',
     label: 'Production APIs',
     description: 'Financial, payment & partner services',
