@@ -89,7 +89,7 @@ export default function Hero() {
               Across cloud-native architectures —{' '}
               <span className="text-text-primary font-medium">150+ production APIs</span>
               {', '}
-              <span className="text-text-primary font-medium">40+ system integrations</span>.
+              <span className="text-text-primary font-medium">50+ system integrations</span>.
             </motion.p>
 
             {/* Primary CTAs */}
