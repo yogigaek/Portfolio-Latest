@@ -7,8 +7,8 @@ import type {
   NavItem,
 } from '@/types'
 
-import profileHero from '@/assets/profile-hero.png'
-import profileAbout from '@/assets/profile-about.jpg'
+import profileHero from '@/assets/profile-hero.webp'
+import profileAbout from '@/assets/profile-about.webp'
 import avatarFadhlillah from '@/assets/avatar-fadhlillah.jpeg'
 import avatarFajri from '@/assets/avatar-fajri.jpeg'
 import cvPdf from '@/assets/cv-muhammad-yogi.pdf'
