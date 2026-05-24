@@ -67,7 +67,7 @@ export default function Contact() {
         <SectionHeader
           eyebrow="Let's Connect"
           title="Get In Touch"
-          subtitle="Open to new opportunities — remote, hybrid, or on-site. Let's build something great together."
+          subtitle="Open to new opportunities — remote. Let's build something great together."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
