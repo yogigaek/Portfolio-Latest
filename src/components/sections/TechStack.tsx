@@ -20,7 +20,7 @@ const allCategories: Array<'All' | SkillCategory> = [
 ]
 
 const levelColors: Record<SkillLevel, string> = {
-  Expert: 'bg-accent/10 border-accent/30 text-accent',
+  Expert: 'bg-accent/10 border-accent/30 text-accent-hover',
   Advanced: 'bg-violet-500/10 border-violet-500/30 text-violet-400',
   Proficient: 'bg-slate-500/10 border-slate-400/30 text-slate-400',
   Familiar: 'bg-surface-2 border-border text-text-muted',
@@ -66,7 +66,7 @@ export default function TechStack() {
                 className={cn(
                   'inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border',
                   active === cat
-                    ? 'bg-accent/10 border-accent/30 text-accent'
+                    ? 'bg-accent/10 border-accent/30 text-accent-hover'
                     : 'bg-surface border-border text-text-secondary hover:text-text-primary hover:border-border-hover',
                 )}
               >
@@ -74,7 +74,7 @@ export default function TechStack() {
                 <span className={cn(
                   'text-xs rounded-full px-1.5 py-0.5 font-semibold min-w-[20px] text-center',
                   active === cat
-                    ? 'bg-accent/20 text-accent'
+                    ? 'bg-accent/20 text-accent-hover'
                     : 'bg-surface-2 text-text-muted',
                 )}>
                   {count}

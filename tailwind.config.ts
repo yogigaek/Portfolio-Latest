@@ -15,6 +15,7 @@ export default {
         accent: {
           DEFAULT: '#6366f1',
           hover: '#818cf8',
+          deep: '#4f46e5',
           muted: 'rgba(99,102,241,0.15)',
         },
         text: {

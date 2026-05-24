@@ -49,7 +49,7 @@ export default function ProjectDetail() {
             {project.metrics.map((m) => (
               <span
                 key={m}
-                className="bg-accent/10 border border-accent/20 text-accent text-sm font-semibold px-4 py-2 rounded-xl"
+                className="bg-accent/10 border border-accent/20 text-accent-hover text-sm font-semibold px-4 py-2 rounded-xl"
               >
                 {m}
               </span>

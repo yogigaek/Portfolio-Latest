@@ -76,7 +76,7 @@ function FeaturedProjectCard({
           {/* Architecture label */}
           {project.architectureLabel && (
             <div className="hidden md:flex items-center gap-2 bg-surface-2 border border-border rounded-xl px-4 py-3 text-xs text-text-muted font-mono flex-shrink-0">
-              <span className="text-accent">▸</span>
+              <span className="text-accent-hover">▸</span>
               {project.architectureLabel}
             </div>
           )}
@@ -91,7 +91,7 @@ function FeaturedProjectCard({
           {project.metrics.map((metric) => (
             <span
               key={metric}
-              className="bg-accent/10 border border-accent/20 text-accent text-xs font-semibold px-3 py-1.5 rounded-xl"
+              className="bg-accent/10 border border-accent/20 text-accent-hover text-xs font-semibold px-3 py-1.5 rounded-xl"
             >
               {metric}
             </span>

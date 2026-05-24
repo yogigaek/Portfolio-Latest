@@ -40,7 +40,7 @@ function NotFound() {
                 <p className="text-text-secondary mb-8">The page you're looking for doesn't exist.</p>
                 <a
                     href="/"
-                    className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white px-6 py-3 rounded-xl text-sm font-medium transition-colors duration-200"
+                    className="inline-flex items-center gap-2 bg-accent-deep hover:bg-accent text-white px-6 py-3 rounded-xl text-sm font-medium transition-colors duration-200"
                 >
                     Back to Portfolio
                 </a>
