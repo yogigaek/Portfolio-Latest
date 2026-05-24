@@ -64,7 +64,7 @@ export default function Testimonials() {
                     <div>
                       <p className="text-text-primary font-semibold text-sm">{t.name}</p>
                       <p className="text-text-muted text-xs">{t.role}</p>
-                      <p className="text-accent-hover text-xs font-medium">{t.company}</p>
+                      <p className="text-accent text-xs font-medium">{t.company}</p>
                     </div>
                   </div>
                 </div>

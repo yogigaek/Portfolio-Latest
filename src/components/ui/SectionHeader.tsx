@@ -13,7 +13,7 @@ export default function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className={`mb-10 md:mb-16 ${align === 'center' ? 'text-center' : 'text-left'}`}>
-      <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-accent-hover mb-4">
+      <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-4">
         {eyebrow}
       </span>
       <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">
