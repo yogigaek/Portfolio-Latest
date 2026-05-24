@@ -152,6 +152,8 @@ export default function Hero() {
                   className="w-full h-full object-cover object-top"
                   width={320}
                   height={384}
+                  fetchPriority="high"
+                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
               </div>
