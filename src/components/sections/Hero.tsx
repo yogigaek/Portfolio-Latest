@@ -61,7 +61,7 @@ export default function Hero() {
               </span>
               <span className="inline-flex items-center gap-1.5 text-text-muted text-xs border border-border px-3 py-1.5 rounded-full">
                 <MapPin size={11} />
-                Jakarta, Indonesia · Remote
+                Pekanbaru, Indonesia · Remote
               </span>
             </motion.div>
 

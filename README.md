@@ -2,7 +2,7 @@
 
 Personal portfolio website for **Muhammad Yogi**, Backend Software Engineer. Built with modern web technologies to showcase professional experience, technical skills, and projects.
 
-**Live:** [muhammadyogi.website](https://muhammadyogi.website)
+**Live:** [muhammadyogi.vercel.app](https://muhammadyogi.vercel.app)
 
 ---
 
@@ -106,7 +106,7 @@ src/
 ## Sections
 
 1. **Hero** — Name, title, tagline, CTA buttons, social links
-2. **About** — Profile photo, key metrics (4+ yrs, 100+ APIs, etc.), bio
+2. **About** — Profile photo, key metrics (4+ yrs, 150+ APIs, etc.), bio
 3. **Work Experience** — Timeline: PT 360 Teknologi Indonesia, Assist.id
 4. **Education** — Universitas Lancang Kuning, Eduwork Bootcamp
 5. **Tech Stack** — 64 skills across 9 categories, filterable

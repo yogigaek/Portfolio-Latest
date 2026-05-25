@@ -30,8 +30,8 @@ const educationList: EducationItem[] = [
   },
   {
     institution: 'Universitas Lancang Kuning Pekanbaru',
-    degree: 'Bachelor of Informatics Engineering (S.Kom)',
-    major: 'Teknik Informatika',
+    degree: 'Bachelor of Computer Science',
+    major: 'Informatics Engineering',
     period: '2017 – 2021',
     highlights: [
       'Relevant coursework: Data Structures, Algorithms, Database Systems, Software Engineering, Computer Networks',

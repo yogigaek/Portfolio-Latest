@@ -104,7 +104,7 @@ export const workExperiences: WorkExperience[] = [
   {
     id: 'indogrosir',
     company: 'PT 360 Teknologi Indonesia',
-    role: 'Software Engineer',
+    role: 'Backend Software Engineer',
     period: 'Jun 2023 – Present',
     periodStart: 'Jun 2023',
     periodEnd: 'Present',
@@ -112,7 +112,7 @@ export const workExperiences: WorkExperience[] = [
     type: 'Full-time',
     location: 'Jakarta, Indonesia · Remote',
     summary:
-      'Leading financial technology & enterprise platform engineering across cloud-native and distributed architectures. Sole engineer owning the full lifecycle of 10+ financial service systems — from architecture to production.',
+      'Leading financial technology & enterprise platform engineering across cloud-native and distributed architectures. Primary backend engineer responsible for the full lifecycle of 10+ financial service systems — from architecture to production.',
     achievements: [
       'Delivered 100+ RESTful APIs for financial platforms covering payment, credit facilities, POS, and 40+ partner integrations',
       'Owned 10+ financial service projects end-to-end — architecture, implementation, and production delivery',
@@ -162,7 +162,7 @@ export const workExperiences: WorkExperience[] = [
     type: 'Full-time',
     location: 'Pekanbaru, Indonesia · On-site',
     summary:
-      'Backend engineer for a healthcare appointment and operations platform. Owned API development, performance engineering, and service integrations.',
+      'Backend engineer for the AUDY healthcare system — a healthcare appointment and operations platform. Owned API development, performance engineering, and service integrations.',
     achievements: [
       'Built 50+ RESTful APIs using Node.js, LoopBack, Express.js, and MongoDB',
       'Improved reporting performance by 700% through MongoDB query tuning and materialized views',
@@ -370,10 +370,10 @@ export const projects: Project[] = [
   },
   {
     id: 'healthcare-system',
-    title: 'Healthcare Operations Platform',
+    title: 'AUDY Healthcare System',
     subtitle: '50+ APIs · 700% Performance Improvement · 10+ Integrations',
     description:
-      'Backend engineer for a healthcare operations platform — built and maintained 50+ RESTful APIs spanning core platform operations, reporting pipelines, third-party integrations, and insurance notification delivery with EJS-templated messages. Integrated 10+ third-party services and delivered 700% reporting performance improvement via MongoDB aggregation pipeline rewrite and materialized views. Automated cleanup of 10,000+ appointment records and resolved 30+ production issues while maintaining system stability.',
+      'Backend engineer for the AUDY healthcare system — built and maintained 50+ RESTful APIs spanning core platform operations, reporting pipelines, third-party integrations, and insurance notification delivery with EJS-templated messages. Integrated 10+ third-party services and delivered 700% reporting performance improvement via MongoDB aggregation pipeline rewrite and materialized views. Automated cleanup of 10,000+ appointment records and resolved 30+ production issues while maintaining system stability.',
     type: 'Enterprise',
     status: 'Private · NDA',
     metrics: ['700% Faster Reporting', '10,000+ Records Automated', '30+ Issues Resolved', 'Zero Data Loss'],
