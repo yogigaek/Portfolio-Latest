@@ -20,7 +20,7 @@ export default function About() {
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,280px)_1fr] lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-16">
           <Reveal>
-            <figure className="max-w-[220px] md:max-w-[320px]">
+            <figure className="mx-auto max-w-[220px] md:mx-0 md:max-w-[320px]">
               <div className="overflow-hidden rounded-2xl border border-border bg-surface">
                 <img
                   src={profileAbout}
@@ -32,7 +32,7 @@ export default function About() {
                   decoding="async"
                 />
               </div>
-              <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-text-muted">
+              <figcaption className="mt-3 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-text-muted md:text-left">
                 {LOCATION.city}, {LOCATION.country} · {LOCATION.timezoneName} ({LOCATION.timezone})
               </figcaption>
             </figure>
