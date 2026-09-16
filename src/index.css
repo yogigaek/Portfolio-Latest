@@ -2,64 +2,180 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Looks: night is the base (also what no-JS and the ProjectDetail boot get), morning and dusk
+ * override it. Colours are RGB triplets so Tailwind opacity modifiers keep working.
+ * The terminal keeps its own dark tokens in every look — a console reads as a console.
+ */
 @layer base {
+  :root {
+    color-scheme: dark;
+
+    --background: 8 9 14;
+    --surface: 15 16 23;
+    --surface-2: 22 24 33;
+    --tinted: 11 12 20;
+    --border: 33 36 49;
+    --border-hover: 51 55 74;
+
+    --text-primary: 244 245 250;
+    --text-secondary: 166 170 186;
+    --text-muted: 122 127 145;
+
+    --accent: 99 102 241;
+    --accent-hover: 129 140 248;
+    --metric: 252 211 77;
+    --success: 52 211 153;
+    --danger: 248 113 113;
+
+    --solid: 244 245 250;
+    --solid-ink: 8 9 14;
+    --shadow: 0 0 0;
+
+    --term-bg: 12 13 20;
+    --term-fg: 203 213 225;
+    --term-muted: 130 143 163;
+    --term-key: 165 180 252;
+    --term-string: 226 232 240;
+    --term-metric: 252 211 77;
+    --term-ok: 52 211 153;
+  }
+
+  :root[data-look='morning'] {
+    color-scheme: light;
+
+    --background: 246 242 234;
+    --surface: 253 251 247;
+    --surface-2: 238 232 221;
+    --tinted: 240 235 225;
+    --border: 222 213 198;
+    --border-hover: 194 182 162;
+
+    --text-primary: 28 25 21;
+    --text-secondary: 74 67 56;
+    --text-muted: 107 99 87;
+
+    --accent: 79 70 229;
+    --accent-hover: 67 56 202;
+    --metric: 146 64 14;
+    --success: 3 100 72;
+    --danger: 185 28 28;
+
+    --solid: 28 25 21;
+    --solid-ink: 250 247 241;
+    --shadow: 70 52 24;
+  }
+
+  :root[data-look='dusk'] {
+    --background: 22 14 26;
+    --surface: 31 21 36;
+    --surface-2: 41 29 47;
+    --tinted: 27 18 32;
+    --border: 60 43 68;
+    --border-hover: 88 64 98;
+
+    --text-primary: 250 241 236;
+    --text-secondary: 208 190 194;
+    --text-muted: 164 145 155;
+
+    --accent: 129 120 255;
+    --accent-hover: 180 176 255;
+    --metric: 255 186 122;
+    --success: 110 231 183;
+    --danger: 252 165 165;
+
+    --solid: 250 241 236;
+    --solid-ink: 22 14 26;
+    --shadow: 0 0 0;
+
+    --term-bg: 20 13 25;
+    --term-key: 216 180 254;
+    --term-metric: 255 186 122;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: #0a0a0a;
-    color: #fafafa;
+    background-color: rgb(var(--background));
+    color: rgb(var(--text-primary));
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  ::selection {
+    background: rgb(var(--accent) / 0.3);
+    color: rgb(var(--text-primary));
+  }
+
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #111111;
+    background: rgb(var(--background));
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #6366f1;
+    background: rgb(var(--border-hover));
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #818cf8;
+    background: rgb(var(--accent));
   }
 
   * {
-    scroll-margin-top: 80px;
+    scroll-margin-top: 88px;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent-hover));
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* crossfade only while a look change is in flight, so hovers and scrollspy never smear */
+  html.is-switching body,
+  html.is-switching body *:not(canvas) {
+    transition:
+      background-color 0.6s ease,
+      border-color 0.6s ease,
+      color 0.6s ease,
+      fill 0.6s ease !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer utilities {
-  .gradient-text {
-    @apply bg-gradient-to-br from-white via-slate-100 to-indigo-400 bg-clip-text text-transparent;
-  }
-
-  .gradient-text-accent {
-    @apply bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent;
-  }
-
-  .glass {
-    @apply backdrop-blur-md bg-black/40 border border-white/5;
-  }
-
   .section-padding {
-    @apply py-16 md:py-20;
+    @apply py-20 md:py-28;
   }
 
-  /* Alternating section background — subtle tinted dark */
   .section-tinted {
-    background-color: #0d0d18;
+    background-color: rgb(var(--tinted));
   }
 
   .container-custom {
-    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-6xl mx-auto px-5 sm:px-6 lg:px-8;
+  }
+
+  .skip-link {
+    @apply fixed left-4 top-3 z-[100] -translate-y-24 rounded-lg bg-solid px-4 py-2 text-sm font-semibold text-solid-ink transition-transform focus:translate-y-0;
   }
 }

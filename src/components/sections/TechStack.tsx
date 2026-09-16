@@ -1,131 +1,62 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import SectionHeader from '@/components/ui/SectionHeader'
-import useInView from '@/hooks/useInView'
+import Reveal from '@/components/ui/Reveal'
 import { skills } from '@/data'
-import type { SkillCategory, SkillLevel } from '@/types'
-import { cn } from '@/lib/utils'
+import type { SkillCategory } from '@/types'
 
-const allCategories: Array<'All' | SkillCategory> = [
-  'All',
+// reading order down each column, so the stack a backend recruiter scans for comes first
+const CATEGORY_ORDER: SkillCategory[] = [
+  'Backend',
   'Languages',
-  'Backend & Frameworks',
-  'Cloud & Infrastructure',
+  'Cloud & DevOps',
   'Databases',
+  'Architecture',
+  'Messaging & Integration',
   'Security & Auth',
+  'Testing & Quality',
+  'Observability & Tools',
   'Frontend',
-  'DevOps & Tools',
-  'Architecture & Design',
-  'Engineering Quality',
 ]
 
-const levelColors: Record<SkillLevel, string> = {
-  Expert: 'bg-accent/10 border-accent/30 text-accent',
-  Advanced: 'bg-violet-500/10 border-violet-500/30 text-violet-400',
-  Proficient: 'bg-slate-500/10 border-slate-400/30 text-slate-400',
-  Familiar: 'bg-surface-2 border-border text-text-muted',
-}
-
-const levelDotColors: Record<SkillLevel, string> = {
-  Expert: 'bg-accent',
-  Advanced: 'bg-violet-400',
-  Proficient: 'bg-slate-400',
-  Familiar: 'bg-text-muted',
-}
-
 export default function TechStack() {
-  const [active, setActive] = useState<'All' | SkillCategory>('All')
-  const { ref, inView } = useInView<HTMLElement>({ threshold: 0.1 })
-
-  const filtered = active === 'All' ? skills : skills.filter((s) => s.category === active)
+  const groups = CATEGORY_ORDER.map((category) => ({
+    category,
+    items: skills.filter((s) => s.category === category),
+  })).filter((g) => g.items.length > 0)
 
   return (
-    <section id="skills" ref={ref} className="section-padding border-t border-border section-tinted">
+    <section id="stack" aria-labelledby="stack-title" className="section-padding border-t border-border">
       <div className="container-custom">
         <SectionHeader
-          eyebrow="Technical Expertise"
-          title="Tech Stack"
-          subtitle="Technologies I use to build production-grade systems."
+          id="stack-title"
+          index="05"
+          eyebrow="Stack"
+          title="Technologies used in production work"
+          subtitle="Grouped by engineering purpose."
         />
 
-        {/* Category tabs with count */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
-          className="flex flex-wrap justify-center gap-2 mb-10"
-        >
-          {allCategories.map((cat) => {
-            const count = cat === 'All'
-              ? skills.length
-              : skills.filter((s) => s.category === cat).length
-            return (
-              <button
-                key={cat}
-                onClick={() => setActive(cat)}
-                className={cn(
-                  'inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border',
-                  active === cat
-                    ? 'bg-accent/10 border-accent/30 text-accent'
-                    : 'bg-surface border-border text-text-secondary hover:text-text-primary hover:border-border-hover',
-                )}
-              >
-                {cat}
-                <span className={cn(
-                  'text-xs rounded-full px-1.5 py-0.5 font-semibold min-w-[20px] text-center',
-                  active === cat
-                    ? 'bg-accent/20 text-accent'
-                    : 'bg-surface-2 text-text-muted',
-                )}>
-                  {count}
-                </span>
-              </button>
-            )
-          })}
-        </motion.div>
-
-        {/* Skills grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"
-          >
-            {filtered.map((skill, i) => (
-              <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.2, delay: i * 0.03 }}
-                className={cn(
-                  'flex items-center gap-2.5 px-4 py-3 rounded-xl border text-sm font-medium transition-colors duration-200 hover:brightness-110',
-                  levelColors[skill.level],
-                )}
-              >
-                <span className={cn('w-2 h-2 rounded-full flex-shrink-0', levelDotColors[skill.level])} />
-                {skill.name}
-              </motion.div>
+        <Reveal>
+          {/* balanced columns: a grid leaves a ragged hole wherever the last row runs out of groups */}
+          <div className="columns-1 gap-x-10 sm:columns-2 lg:columns-3">
+            {groups.map(({ category, items }) => (
+              <section key={category} aria-label={category} className="mb-9 break-inside-avoid">
+                <h3 className="flex items-center gap-3 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-accent-hover">
+                  {category}
+                  <span aria-hidden="true" className="h-px flex-1 bg-border" />
+                </h3>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {items.map((skill) => (
+                    <li
+                      key={skill.name}
+                      className="rounded-lg border border-border bg-surface px-2.5 py-1.5 font-mono text-[12.5px] text-text-secondary transition-colors duration-200 hover:border-border-hover hover:text-text-primary"
+                    >
+                      {skill.name}
+                    </li>
+                  ))}
+                </ul>
+              </section>
             ))}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Legend */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.4, delay: 0.5 }}
-          className="flex flex-wrap justify-center gap-6 mt-10"
-        >
-          {(['Expert', 'Advanced', 'Proficient', 'Familiar'] as SkillLevel[]).map((level) => (
-            <div key={level} className="flex items-center gap-2 text-xs text-text-muted">
-              <span className={cn('w-2 h-2 rounded-full', levelDotColors[level])} />
-              {level}
-            </div>
-          ))}
-        </motion.div>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

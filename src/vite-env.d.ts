@@ -10,8 +10,4 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
-// Swiper CSS side-effect imports
-declare module 'swiper/css'
-declare module 'swiper/css/pagination'
-declare module 'swiper/css/autoplay'
-declare module 'swiper/css/navigation'
+declare const __BUILD_DATE__: string

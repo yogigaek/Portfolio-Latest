@@ -1,55 +1,60 @@
 import type { Config } from 'tailwindcss'
 
+const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`
+
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        background: '#0a0a0a',
-        surface: '#111111',
-        'surface-2': '#161616',
+        background: token('background'),
+        surface: token('surface'),
+        'surface-2': token('surface-2'),
+        tinted: token('tinted'),
         border: {
-          DEFAULT: '#222222',
-          hover: '#333333',
+          DEFAULT: token('border'),
+          hover: token('border-hover'),
         },
         accent: {
-          DEFAULT: '#6366f1',
-          hover: '#818cf8',
-          muted: 'rgba(99,102,241,0.15)',
+          DEFAULT: token('accent'),
+          hover: token('accent-hover'),
         },
         text: {
-          primary: '#fafafa',   // 18.97:1 ✓
-          secondary: '#a1a1aa', // 7.63:1  ✓ (was #71717a = 4.10 ✗)
-          muted: '#787880',     // 4.52:1  ✓ (was #52525b = 2.56 ✗)
+          primary: token('text-primary'),
+          secondary: token('text-secondary'),
+          muted: token('text-muted'),
+        },
+        metric: token('metric'),
+        success: token('success'),
+        danger: token('danger'),
+        solid: {
+          DEFAULT: token('solid'),
+          ink: token('solid-ink'),
+        },
+        shade: token('shadow'),
+        term: {
+          bg: token('term-bg'),
+          fg: token('term-fg'),
+          muted: token('term-muted'),
+          key: token('term-key'),
+          string: token('term-string'),
+          metric: token('term-metric'),
+          ok: token('term-ok'),
         },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         display: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-      },
-      backgroundImage: {
-        'gradient-accent': 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-        'gradient-text': 'linear-gradient(135deg, #fafafa 0%, #818cf8 100%)',
-        'gradient-card': 'linear-gradient(135deg, #111111, #161616)',
+        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
       },
       keyframes: {
-        fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(24px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
         pulse_dot: {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.4' },
         },
       },
       animation: {
-        'fade-up': 'fadeUp 0.6s ease-out forwards',
-        'fade-in': 'fadeIn 0.4s ease-out forwards',
-        'pulse-dot': 'pulse_dot 2s ease-in-out infinite',
+        'pulse-dot': 'pulse_dot 1.1s steps(1, end) infinite',
       },
     },
   },
