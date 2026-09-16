@@ -1,6 +1,7 @@
 export interface WorkExperience {
   id: string
   company: string
+  client?: string
   role: string
   period: string
   periodStart: string
@@ -11,22 +12,21 @@ export interface WorkExperience {
   summary: string
   achievements: string[]
   techStack: string[]
-  logoInitials: string
-  accentColor: string
 }
 
 export type SkillLevel = 'Expert' | 'Advanced' | 'Proficient' | 'Familiar'
 
 export type SkillCategory =
   | 'Languages'
-  | 'Backend & Frameworks'
-  | 'Cloud & Infrastructure'
+  | 'Backend'
+  | 'Cloud & DevOps'
   | 'Databases'
+  | 'Messaging & Integration'
   | 'Security & Auth'
+  | 'Architecture'
+  | 'Testing & Quality'
+  | 'Observability & Tools'
   | 'Frontend'
-  | 'DevOps & Tools'
-  | 'Architecture & Design'
-  | 'Engineering Quality'
 
 export interface Skill {
   name: string
@@ -71,15 +71,44 @@ export interface Testimonial {
   review: string
 }
 
-export interface StatCard {
+export interface Outcome {
+  id: string
   value: string
-  suffix?: string
   label: string
+  note: string
+}
+
+export type ServiceIcon = 'api' | 'integration' | 'cloud' | 'database' | 'modernization' | 'platform' | 'consulting'
+
+export interface Service {
+  id: string
+  icon: ServiceIcon
+  title: string
   description: string
+  proof: string
+}
+
+export interface WorkStep {
+  title: string
+  description: string
+}
+
+export interface EducationItem {
+  id: string
+  institution: string
+  degree: string
+  major: string
+  period: string
+  highlights: string[]
+}
+
+export interface QuickFact {
+  label: string
+  value: string
+  href?: string
 }
 
 export interface NavItem {
   label: string
   href: string
 }
-

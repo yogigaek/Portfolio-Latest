@@ -1,184 +1,218 @@
 import { useRef, useState } from 'react'
-import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
-import { Mail, Linkedin, MessageCircle, Send, CheckCircle, AlertCircle } from 'lucide-react'
-import GitHubIcon from '@/components/ui/GitHubIcon'
+import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
+import Reveal from '@/components/ui/Reveal'
 import Button from '@/components/ui/Button'
-import useInView from '@/hooks/useInView'
-import { EMAILJS_CONFIG, CONTACT_INFO } from '@/data'
+import { AVAILABILITY, CONTACT_INFO, EMAILJS_CONFIG, LOCATION, capitalize, whatsappLink } from '@/data'
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error'
 
-const contactOptions = [
+const inputClass =
+  // 16px on phones: iOS Safari zooms the page when a smaller field is focused
+  'w-full rounded-xl border border-border-hover bg-background px-4 py-3 text-base sm:text-sm text-text-primary placeholder:text-text-muted outline-none transition-colors duration-200 hover:border-text-muted focus:border-accent/70 focus:ring-2 focus:ring-accent/50'
+
+const channels = [
   {
-    icon: Mail,
+    label: 'WhatsApp',
+    value: CONTACT_INFO.phone,
+    href: whatsappLink(),
+    external: true,
+  },
+  {
     label: 'Email',
     value: CONTACT_INFO.email,
     href: `mailto:${CONTACT_INFO.email}`,
+    external: false,
   },
   {
-    icon: Linkedin,
     label: 'LinkedIn',
     value: CONTACT_INFO.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
     href: CONTACT_INFO.linkedin,
-  },
-  {
-    icon: GitHubIcon,
-    label: 'GitHub',
-    value: CONTACT_INFO.github.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
-    href: CONTACT_INFO.github,
-  },
-  {
-    icon: MessageCircle,
-    label: 'WhatsApp',
-    value: CONTACT_INFO.phone,
-    href: CONTACT_INFO.whatsapp,
+    external: true,
   },
 ]
 
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null)
   const [status, setStatus] = useState<FormStatus>('idle')
-  const { ref, inView } = useInView<HTMLElement>({ threshold: 0.1 })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formRef.current) return
+    const form = formRef.current
+    if (!form) return
+
+    // `required` accepts whitespace-only values, so blank-looking fields are rejected here
+    for (const name of ['from_name', 'message']) {
+      const field = form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | null
+      field?.setCustomValidity(field.value.trim() ? '' : 'Please fill out this field.')
+    }
+    if (!form.reportValidity()) return
 
     setStatus('sending')
     try {
-      await emailjs.sendForm(
-        EMAILJS_CONFIG.serviceId,
-        EMAILJS_CONFIG.templateId,
-        formRef.current,
-        { publicKey: EMAILJS_CONFIG.publicKey },
-      )
+      await emailjs.sendForm(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, form, {
+        publicKey: EMAILJS_CONFIG.publicKey,
+      })
       setStatus('success')
-      formRef.current.reset()
+      form.reset()
     } catch {
       setStatus('error')
     }
   }
 
   return (
-    <section id="contact" ref={ref} className="section-padding border-t border-border section-tinted">
+    <section id="contact" aria-labelledby="contact-title" className="section-padding border-t border-border section-tinted">
       <div className="container-custom">
         <SectionHeader
-          eyebrow="Let's Connect"
-          title="Get In Touch"
-          subtitle="Open to new opportunities — remote. Let's build something great together."
+          id="contact-title"
+          index="08"
+          eyebrow="Contact"
+          title="Let's talk about your backend role or project"
+          subtitle="Reach me directly on WhatsApp or email, or send a message with the form."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
-          {/* Contact options */}
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-2 space-y-4"
-          >
-            <div className="mb-6">
-              <p className="text-text-secondary text-sm leading-relaxed">
-                I'm currently open to backend engineering roles across any domain. If your
-                team is building systems that matter, let's talk.
-              </p>
-            </div>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
+          <Reveal className="lg:h-full">
+            <ul className="flex h-full flex-col divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+              {channels.map((channel) => (
+                <li key={channel.label} className="flex-1">
+                  <a
+                    href={channel.href}
+                    {...(channel.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="group flex h-full items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-surface-2"
+                  >
+                    <span className="min-w-0">
+                      <span className="block font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">
+                        {channel.label}
+                      </span>
+                      <span className="mt-1 block truncate text-sm font-medium text-text-primary">{channel.value}</span>
+                    </span>
+                    <ArrowUpRight
+                      size={16}
+                      aria-hidden="true"
+                      className="shrink-0 text-text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-text-primary"
+                    />
+                    {channel.external && <span className="sr-only">(opens in new tab)</span>}
+                  </a>
+                </li>
+              ))}
+              <li className="flex-1 px-5 py-4">
+                <span className="block font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">Location</span>
+                <span className="mt-1 block text-sm font-medium text-text-primary">
+                  {LOCATION.city}, {LOCATION.country}
+                </span>
+                <span className="mt-0.5 block text-xs text-text-secondary">
+                  {LOCATION.timezoneName} · {LOCATION.timezone} — available for remote collaboration
+                </span>
+              </li>
+              <li className="flex-1 px-5 py-4">
+                <span className="block font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">Open to</span>
+                <span className="mt-1 block text-sm font-medium text-text-primary">
+                  {capitalize(AVAILABILITY.join(' · '))}
+                </span>
+              </li>
+            </ul>
+          </Reveal>
 
-            {contactOptions.map((option) => (
-              <a
-                key={option.label}
-                href={option.href}
-                target={option.href.startsWith('mailto') ? undefined : '_blank'}
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 bg-surface border border-border hover:border-border-hover rounded-2xl p-5 transition-all duration-200 group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0 group-hover:bg-accent/20 transition-colors duration-200">
-                  <option.icon size={18} />
+          <Reveal delay={0.08}>
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className="rounded-2xl border border-border bg-surface p-5 sm:p-6 md:p-8"
+              aria-describedby="contact-form-note"
+              onInput={(e) => {
+                const field = e.target as HTMLInputElement
+                field.setCustomValidity?.('')
+                if (status === 'success' || status === 'error') setStatus('idle')
+              }}
+            >
+              <p id="contact-form-note" className="mb-6 text-sm text-text-secondary">
+                All fields are required.
+              </p>
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-text-secondary">
+                    Name
+                  </label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="from_name"
+                    required
+                    autoComplete="name"
+                    placeholder="Your name"
+                    className={inputClass}
+                  />
                 </div>
                 <div>
-                  <p className="text-text-muted text-xs font-medium">{option.label}</p>
-                  <p className="text-text-primary text-sm font-medium">{option.value}</p>
+                  <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-text-secondary">
+                    Email
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="from_email"
+                    required
+                    autoComplete="email"
+                    placeholder="you@company.com"
+                    className={inputClass}
+                  />
                 </div>
-              </a>
-            ))}
-          </motion.div>
-
-          {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-3"
-          >
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-text-secondary text-sm font-medium mb-1.5">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="from_name"
-                  required
-                  autoComplete="name"
-                  placeholder="Your name"
-                  className="w-full bg-surface border border-border focus:border-accent/60 focus:ring-2 focus:ring-accent/20 rounded-xl px-4 py-3 text-text-primary placeholder-text-muted text-sm outline-none transition-all duration-200"
-                />
               </div>
 
-              <div>
-                <label className="block text-text-secondary text-sm font-medium mb-1.5">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="from_email"
-                  required
-                  autoComplete="email"
-                  placeholder="your@email.com"
-                  className="w-full bg-surface border border-border focus:border-accent/60 focus:ring-2 focus:ring-accent/20 rounded-xl px-4 py-3 text-text-primary placeholder-text-muted text-sm outline-none transition-all duration-200"
-                />
-              </div>
-
-              <div>
-                <label className="block text-text-secondary text-sm font-medium mb-1.5">
+              <div className="mt-4">
+                <label htmlFor="contact-message" className="mb-1.5 block text-sm font-medium text-text-secondary">
                   Message
                 </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   required
-                  rows={5}
-                  placeholder="Tell me about the role or project..."
-                  className="w-full bg-surface border border-border focus:border-accent/60 focus:ring-2 focus:ring-accent/20 rounded-xl px-4 py-3 text-text-primary placeholder-text-muted text-sm outline-none transition-all duration-200 resize-none"
+                  rows={6}
+                  placeholder="Tell me about the role or project…"
+                  className={`${inputClass} resize-y min-h-[140px]`}
                 />
               </div>
 
-              {status === 'success' && (
-                <div className="flex items-center gap-2 text-emerald-400 text-sm bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-4 py-3">
-                  <CheckCircle size={16} />
-                  Message sent! I'll get back to you soon.
-                </div>
-              )}
-
-              {status === 'error' && (
-                <div className="flex items-center gap-2 text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
-                  <AlertCircle size={16} />
-                  Something went wrong. Please try emailing me directly.
-                </div>
-              )}
+              <div role="status" aria-live="polite" className="mt-4 empty:hidden">
+                {status === 'success' && (
+                  <p className="flex items-center gap-2 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success">
+                    <CheckCircle2 size={16} aria-hidden="true" />
+                    Message sent — thank you. I&apos;ll get back to you soon.
+                  </p>
+                )}
+              </div>
+              <div role="alert" className="mt-4 empty:hidden">
+                {status === 'error' && (
+                  <p className="rounded-xl border border-danger/30 bg-danger/10 px-4 py-3 text-sm text-danger">
+                    Sending failed. Please email{' '}
+                    <a href={`mailto:${CONTACT_INFO.email}`} className="underline underline-offset-2">
+                      {CONTACT_INFO.email}
+                    </a>{' '}
+                    or{' '}
+                    <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+                      message me on WhatsApp
+                      <span className="sr-only">(opens in new tab)</span>
+                    </a>
+                    .
+                  </p>
+                )}
+              </div>
 
               <Button
                 type="submit"
-                loading={status === 'sending'}
-                disabled={status === 'success'}
-                className="w-full"
+                variant="solid"
                 size="lg"
+                loading={status === 'sending'}
+                className="mt-6 w-full"
               >
-                <Send size={16} />
-                {status === 'success' ? 'Message Sent!' : 'Send Message'}
+                <Send size={16} aria-hidden="true" />
+                Send message
               </Button>
             </form>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

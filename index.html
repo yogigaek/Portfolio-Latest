@@ -3,14 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#08090e" />
+    <meta name="color-scheme" content="dark light" />
+    <!-- runs before CSS so the right look is painted first; the only place the hour map lives:
+         05–14 day, 14–19 dusk, otherwise night. A saved manual choice wins. -->
+    <script>
+      (function () {
+        var look = null
+        try { look = localStorage.getItem('look') } catch (e) {}
+        if (look !== 'morning' && look !== 'dusk' && look !== 'night') {
+          var h = new Date().getHours()
+          look = h >= 5 && h < 14 ? 'morning' : h >= 14 && h < 19 ? 'dusk' : 'night'
+        }
+        document.documentElement.setAttribute('data-look', look)
+      })()
+    </script>
 
     <!-- Primary Meta Tags -->
     <title>Muhammad Yogi — Backend Software Engineer</title>
     <meta name="title" content="Muhammad Yogi — Backend Software Engineer" />
     <meta
       name="description"
-      content="Backend Software Engineer with 4+ years building cloud-native financial &amp; healthcare systems. 150+ production APIs, 50+ system integrations at enterprise scale."
+      content="Backend Software Engineer with 4+ years building fintech systems on AWS Serverless and healthcare backends — 150+ production APIs, 50+ system integrations. Pekanbaru, Indonesia (UTC+7) — open to full-time roles, international remote work and consulting."
     />
     <meta
       name="keywords"
@@ -20,25 +34,30 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://muhammadyogi.vercel.app/" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Muhammad Yogi" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="https://muhammadyogi.vercel.app/" />
     <meta property="og:title" content="Muhammad Yogi — Backend Software Engineer" />
     <meta
       property="og:description"
-      content="Backend SWE with 4+ years building cloud-native financial &amp; healthcare systems. 150+ APIs, 50+ integrations at enterprise scale."
+      content="4+ years building fintech and healthcare backends — 150+ production APIs, 50+ system integrations. Pekanbaru, Indonesia (UTC+7) — open to full-time roles, international remote work and consulting."
     />
     <meta property="og:image" content="https://muhammadyogi.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Muhammad Yogi — Backend Software Engineer" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://muhammadyogi.vercel.app/" />
-    <meta property="twitter:title" content="Muhammad Yogi — Backend Software Engineer" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Muhammad Yogi — Backend Software Engineer" />
     <meta
-      property="twitter:description"
-      content="Backend SWE with 4+ years building cloud-native financial &amp; healthcare systems. 150+ APIs, 50+ integrations at enterprise scale."
+      name="twitter:description"
+      content="4+ years building fintech and healthcare backends — 150+ production APIs, 50+ system integrations. Pekanbaru, Indonesia (UTC+7)."
     />
-    <meta property="twitter:image" content="https://muhammadyogi.vercel.app/og-image.png" />
+    <meta name="twitter:image" content="https://muhammadyogi.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="Muhammad Yogi — Backend Software Engineer" />
 
     <!-- Favicon & Manifest -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -47,15 +66,15 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
     </noscript>
 
     <!-- JSON-LD Structured Data -->
@@ -65,11 +84,19 @@
         "@type": "Person",
         "name": "Muhammad Yogi",
         "jobTitle": "Backend Software Engineer",
-        "url": "https://muhammadyogi.vercel.app",
+        "description": "Backend Software Engineer with 4+ years building fintech systems on AWS Serverless and healthcare backends — 150+ production APIs and 50+ system integrations.",
+        "url": "https://muhammadyogi.vercel.app/",
+        "image": "https://muhammadyogi.vercel.app/og-image.png",
         "email": "yogikgaek@gmail.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Pekanbaru", "addressRegion": "Riau", "addressCountry": "ID" },
+        "worksFor": { "@type": "Organization", "name": "PT 360 Teknologi Indonesia" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universitas Lancang Kuning" },
+        "mainEntityOfPage": { "@type": "ProfilePage", "@id": "https://muhammadyogi.vercel.app/" },
         "sameAs": [
           "https://www.linkedin.com/in/yogigaek",
-          "https://github.com/yogigaek"
+          "https://github.com/yogigaek",
+          "https://gitlab.com/yogigaek",
+          "https://leetcode.com/u/yogigaek/"
         ],
         "knowsAbout": [
           "Node.js",
@@ -85,7 +112,6 @@
           "Financial Systems",
           "Healthcare Systems",
           "API Integration",
-          "Cloud Architecture",
           "Distributed Systems",
           "RabbitMQ",
           "Docker",

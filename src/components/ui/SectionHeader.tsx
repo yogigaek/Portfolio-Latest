@@ -1,29 +1,28 @@
 interface SectionHeaderProps {
+  index: string
   eyebrow: string
   title: string
   subtitle?: string
-  align?: 'left' | 'center'
+  id?: string
+  children?: React.ReactNode
 }
 
-export default function SectionHeader({
-  eyebrow,
-  title,
-  subtitle,
-  align = 'center',
-}: SectionHeaderProps) {
+export default function SectionHeader({ index, eyebrow, title, subtitle, id, children }: SectionHeaderProps) {
   return (
-    <div className={`mb-10 md:mb-16 ${align === 'center' ? 'text-center' : 'text-left'}`}>
-      <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-accent mb-4">
-        {eyebrow}
-      </span>
-      <h2 className="font-display text-3xl md:text-4xl font-bold gradient-text mb-4">
+    <header className="mb-10 md:mb-14 max-w-3xl">
+      <p className="flex items-center gap-3 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-accent-hover mb-4">
+        <span>
+          {index} <span aria-hidden="true">—</span> {eyebrow}
+        </span>
+        <span aria-hidden="true" className="h-px w-16 sm:w-40 bg-gradient-to-r from-accent/40 to-transparent" />
+      </p>
+      <h2 id={id} className="font-display text-3xl md:text-[2.6rem] md:leading-[1.15] font-bold text-text-primary tracking-tight text-balance">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-text-secondary text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-          {subtitle}
-        </p>
+        <p className="mt-4 text-text-secondary text-base md:text-lg leading-relaxed">{subtitle}</p>
       )}
-    </div>
+      {children && <div className="mt-6">{children}</div>}
+    </header>
   )
 }

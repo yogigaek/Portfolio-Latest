@@ -1,0 +1,17 @@
+{
+  "name": "Muhammad Yogi",
+  "role": "backend software engineer",
+  "location": "Pekanbaru, ID · UTC+7",
+  "core": ["Node.js / NestJS", "PHP / Laravel", "Go", "AWS"],
+  "domains": ["fintech", "healthcare"],
+  "scale": ["150+ APIs", "50+ integrations"],
+  "status": "open_to_opportunities",
+  "open_to": ["full-time roles", "international remote work", "consulting"],
+  "links": {
+    "portfolio": "https://muhammadyogi.vercel.app",
+    "cv": "https://muhammadyogi.vercel.app/#experience",
+    "github": "https://github.com/yogigaek",
+    "linkedin": "https://www.linkedin.com/in/yogigaek",
+    "email": "yogikgaek@gmail.com"
+  }
+}
