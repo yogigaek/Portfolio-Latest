@@ -2,7 +2,7 @@
   "name": "Muhammad Yogi",
   "role": "backend software engineer",
   "location": "Pekanbaru, ID · UTC+7",
-  "core": ["Node.js / NestJS", "PHP / Laravel", "Go", "AWS"],
+  "core": ["Node.js / NestJS", "PHP / Laravel", "Go", "Python", "AWS"],
   "domains": ["fintech", "healthcare"],
   "scale": ["150+ APIs", "50+ integrations"],
   "status": "open_to_opportunities",

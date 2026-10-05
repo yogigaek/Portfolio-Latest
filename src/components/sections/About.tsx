@@ -1,12 +1,16 @@
 import SectionHeader from '@/components/ui/SectionHeader'
 import Reveal from '@/components/ui/Reveal'
-import { AVAILABILITY, LOCATION, getOutcome, profileAbout, quickFacts, workExperiences, yearsOfExperience } from '@/data'
+import { AVAILABILITY, CORE_STACK, LOCATION, getOutcome, profileAbout, quickFacts, workExperiences, yearsOfExperience } from '@/data'
 
 export default function About() {
   const currentJob = workExperiences.find((job) => job.current) ?? workExperiences[0]
   const apis = getOutcome('apis')
   const integrations = getOutcome('integrations')
   const reporting = getOutcome('reporting')
+  const coreStack =
+    CORE_STACK.length > 2
+      ? `${CORE_STACK.slice(0, -1).join(', ')}, and ${CORE_STACK[CORE_STACK.length - 1]}`
+      : CORE_STACK.join(' and ')
 
   return (
     <section id="about" aria-labelledby="about-title" className="section-padding border-t border-border section-tinted">
@@ -51,7 +55,7 @@ export default function About() {
               planned time.
             </p>
             <p>
-              Core stack is Node.js/NestJS and PHP/Laravel on AWS, with Go. Led the migration of three Lambda
+              Core stack: {coreStack}. Led the migration of three Lambda
               projects into a single NestJS platform with OpenTelemetry observability, built an internal
               operations platform from scratch (150+ features for 20+ users), and made reporting on a healthcare
               platform {reporting.value} faster through MongoDB query tuning.
