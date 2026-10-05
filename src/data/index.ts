@@ -87,7 +87,7 @@ export const LOCATION = {
 
 export const AVAILABILITY = ['full-time roles', 'international remote work', 'consulting']
 
-export const CORE_STACK = ['Node.js / NestJS', 'PHP / Laravel', 'Go', 'AWS']
+export const CORE_STACK = ['Node.js / NestJS', 'PHP / Laravel', 'Go', 'Python', 'AWS']
 
 export const navItems: NavItem[] = [
   { label: 'About', href: '#about' },
@@ -318,7 +318,6 @@ export const skills: Skill[] = [
   { name: 'PHP', level: 'Advanced', category: 'Languages' },
   { name: 'Go', level: 'Proficient', category: 'Languages' },
   { name: 'Python', level: 'Familiar', category: 'Languages' },
-  { name: 'SQL', level: 'Advanced', category: 'Languages' },
 
   // Backend
   { name: 'Node.js', level: 'Expert', category: 'Backend' },

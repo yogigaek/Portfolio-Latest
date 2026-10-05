@@ -38,7 +38,7 @@ one monolith with full OpenTelemetry observability.
 
 |                              |                                                                                                                    |
 |------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| **Languages** | TypeScript, JavaScript, PHP, Go, Python, SQL |
+| **Languages** | TypeScript, JavaScript, PHP, Go, Python |
 | **Backend** | Node.js, NestJS, Express.js, Laravel, LoopBack, REST API Design, Zod, class-validator |
 | **Cloud & DevOps** | AWS Lambda, SQS, SNS, API Gateway, S3, ECR, Serverless Framework, Docker, Kubernetes, CI/CD, Git |
 | **Databases** | PostgreSQL, MySQL, MongoDB, Redis, Prisma ORM, Mongoose, Query Optimization, Database Design |
