@@ -14,10 +14,6 @@ import type {
 import profileAbout from '@/assets/profile-about.webp'
 import avatarFadhlillah from '@/assets/avatar-fadhlillah.jpeg'
 import avatarFajri from '@/assets/avatar-fajri.jpeg'
-import cvPdf from '@/assets/cv-muhammad-yogi.pdf'
-import cvFullPdf from '@/assets/cv-muhammad-yogi-full.pdf'
-import onepagerEn from '@/assets/consulting-onepager-en.pdf'
-import onepagerId from '@/assets/consulting-onepager-id.pdf'
 
 // MERN e-commerce screenshots
 import mernSs1 from '@/assets/projects/mern-ecommerce/ss1.png'
@@ -56,20 +52,22 @@ export { profileAbout }
 // index.html, public/manifest.json, public/whoami.json and the CV/one-pager builders carry static copies of it.
 export const ROLE = 'Backend / Full-Stack Engineer'
 
-// "/" is not allowed in a file name, so the download reads "Backend & Full-Stack Engineer"
-const CV_NAME = `Muhammad Yogi - ${ROLE.replace(' / ', ' & ')}`
+// PDFs live in public/ under the name a recruiter should see: the host's Content-Disposition header names the
+// download after the URL and overrides the `download` attribute, so a hashed src/assets import would leak its
+// hash into the file name. Fixed URLs also keep links shared elsewhere (LinkedIn, email) working after a rebuild.
+const pdf = (name: string) => ({ href: `/${name}`, filename: name })
 
 export const CV = {
-  onePage: { href: cvPdf, filename: `${CV_NAME} - CV.pdf`, pages: 1 },
-  full: { href: cvFullPdf, filename: `${CV_NAME} - CV (full).pdf`, pages: 2 },
+  onePage: { ...pdf('Muhammad-Yogi-CV.pdf'), pages: 1 },
+  full: { ...pdf('Muhammad-Yogi-CV-Full.pdf'), pages: 2 },
 }
 
 export const NDA_NOTE =
   'Client work is under NDA, so these case studies describe scope, architecture, and measured outcomes rather than screenshots or code.'
 
 export const CONSULTING_ONEPAGER = {
-  en: { href: onepagerEn, filename: 'Muhammad Yogi - Backend Engineering Services.pdf' },
-  id: { href: onepagerId, filename: 'Muhammad Yogi - Layanan Backend Engineering.pdf' },
+  en: pdf('Muhammad-Yogi-Backend-Services.pdf'),
+  id: pdf('Muhammad-Yogi-Layanan-Backend.pdf'),
 }
 
 function calcYearsFromStart(start: string): string {
