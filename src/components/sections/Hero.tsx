@@ -12,6 +12,7 @@ import {
   CONTACT_INFO,
   LOCATION,
   CV,
+  ROLE,
   getOutcome,
   whatsappLink,
   workExperiences,
@@ -134,12 +135,12 @@ export default function Hero() {
 
             <motion.p {...fadeUp(0.36)} className="mt-7 text-base font-medium text-text-primary sm:text-lg">
               {/* a non-breaking space before each separator keeps a wrapped line from starting with "·" */}
-              Backend Software Engineer&nbsp;<span className="text-text-muted" aria-hidden="true">·</span>{' '}
+              {ROLE}&nbsp;<span className="text-text-muted" aria-hidden="true">·</span>{' '}
               {yearsOfExperience} years&nbsp;<span className="text-text-muted" aria-hidden="true">·</span> Fintech &amp; Healthcare
             </motion.p>
 
             <motion.p {...fadeUp(0.42)} className="mt-3 max-w-xl text-[15px] leading-relaxed text-text-secondary sm:text-base">
-              Primary backend engineer for {projects.value} financial service systems at {currentJob.company}
+              Backend engineer for {projects.value} financial service systems at {currentJob.company}
               {'\u00a0· '}
               {integrations.value} system integrations
               {'\u00a0· '}
@@ -289,7 +290,7 @@ function TerminalCard({ animate }: { animate: boolean }) {
     <>&nbsp;</>,
     p('{'),
     <>  {k('name')}{p(':')} {s('Muhammad Yogi')}{p(',')}</>,
-    <>  {k('role')}{p(':')} {s('backend software engineer')}{p(',')}</>,
+    <>  {k('role')}{p(':')} {s(ROLE.toLowerCase())}{p(',')}</>,
     <>  {k('location')}{p(':')} {s(`${LOCATION.city}, ${LOCATION.countryCode} · ${LOCATION.timezone}`)}{p(',')}</>,
     ...arrayLines('core', CORE_STACK, 1, 2, s),
     ...arrayLines('domains', ['fintech', 'healthcare'], 1, 1, s),
@@ -330,7 +331,7 @@ function TerminalCard({ animate }: { animate: boolean }) {
       <div aria-hidden="true" className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-accent/25 via-transparent to-accent/10 blur-2xl" />
       <div
         role="img"
-        aria-label={`Terminal: curl muhammadyogi.vercel.app/whoami.json returns a JSON profile — Muhammad Yogi, backend software engineer in ${LOCATION.city}, ${LOCATION.country} (${LOCATION.timezone}); core stack ${CORE_STACK.join(', ')}; fintech and healthcare; ${apis.value} APIs and ${integrations.value} integrations; open to ${AVAILABILITY.join(', ')}.`}
+        aria-label={`Terminal: curl muhammadyogi.vercel.app/whoami.json returns a JSON profile — Muhammad Yogi, ${ROLE.toLowerCase()} in ${LOCATION.city}, ${LOCATION.country} (${LOCATION.timezone}); core stack ${CORE_STACK.join(', ')}; fintech and healthcare; ${apis.value} APIs and ${integrations.value} integrations; open to ${AVAILABILITY.join(', ')}.`}
         className="relative overflow-hidden rounded-2xl border border-white/10 bg-term-bg/90 shadow-[0_40px_100px_-30px_rgb(var(--shadow)/0.7)] ring-1 ring-black/5 backdrop-blur-md"
       >
         <div aria-hidden="true" className="flex items-center gap-2 border-b border-white/[0.06] bg-white/[0.03] px-4 py-3">

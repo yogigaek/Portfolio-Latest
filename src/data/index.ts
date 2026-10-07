@@ -52,10 +52,20 @@ import phpDet11 from '@/assets/projects/php-ecommerce/det11.png'
 
 export { profileAbout }
 
+// Public positioning (hero, About, footer, whoami, page titles). Job titles in workExperiences stay the official ones.
+// index.html, public/manifest.json, public/whoami.json and the CV/one-pager builders carry static copies of it.
+export const ROLE = 'Backend / Full-Stack Engineer'
+
+// "/" is not allowed in a file name, so the download reads "Backend & Full-Stack Engineer"
+const CV_NAME = `Muhammad Yogi - ${ROLE.replace(' / ', ' & ')}`
+
 export const CV = {
-  onePage: { href: cvPdf, filename: 'Muhammad Yogi - Backend Software Engineer - CV.pdf', pages: 1 },
-  full: { href: cvFullPdf, filename: 'Muhammad Yogi - Backend Software Engineer - CV (full).pdf', pages: 2 },
+  onePage: { href: cvPdf, filename: `${CV_NAME} - CV.pdf`, pages: 1 },
+  full: { href: cvFullPdf, filename: `${CV_NAME} - CV (full).pdf`, pages: 2 },
 }
+
+export const NDA_NOTE =
+  'Client work is under NDA, so these case studies describe scope, architecture, and measured outcomes rather than screenshots or code.'
 
 export const CONSULTING_ONEPAGER = {
   en: { href: onepagerEn, filename: 'Muhammad Yogi - Backend Engineering Services.pdf' },
@@ -86,6 +96,21 @@ export const LOCATION = {
 }
 
 export const AVAILABILITY = ['full-time roles', 'international remote work', 'consulting']
+
+// Contact opens with one path per visitor: a recruiter hiring, or a client with a project
+export const CONTACT_PATHS = {
+  hiring: {
+    eyebrow: 'For recruiters',
+    title: 'Hiring for your team?',
+    body: 'Open to full-time backend and full-stack roles, including international remote work.',
+  },
+  project: {
+    eyebrow: 'For clients',
+    title: 'Have a project to build?',
+    body: 'APIs, bank and partner integrations, AWS Serverless systems, and internal platforms, with scope and timeline agreed in writing.',
+    whatsappMessage: 'Hi Yogi, I saw your portfolio and have a project in mind',
+  },
+}
 
 export const CORE_STACK = ['Node.js / NestJS', 'PHP / Laravel', 'Go', 'Python', 'AWS']
 
@@ -143,6 +168,13 @@ export function getOutcome(id: string): Outcome {
   return outcome
 }
 
+// Repeated across About, Services, the work history and the case studies — one value each so they can't disagree.
+const MONITORING_FEATURES = '150+'
+const GATEWAY_TESTS = '800+'
+
+// One whole sentence of About: the component only places it after "Core stack: …".
+export const ABOUT_BUILT = `Led the migration of three Lambda projects into a single NestJS platform with OpenTelemetry observability, built two internal platforms from scratch (a ${MONITORING_FEATURES} feature operations hub and a payment integration platform with ${GATEWAY_TESTS} automated tests), and made reporting on a healthcare platform ${getOutcome('reporting').value} faster through MongoDB query tuning.`
+
 export const services: Service[] = [
   {
     id: 'api',
@@ -184,7 +216,7 @@ export const services: Service[] = [
     icon: 'platform',
     title: 'Internal Platforms',
     description: 'Operations dashboards and admin platforms built from scratch with Laravel, React + Inertia.js, PostgreSQL, and MySQL.',
-    proof: 'Replaced a legacy platform with a unified system — 150+ features for 20+ internal users.',
+    proof: `Two platforms built from scratch: a ${MONITORING_FEATURES} feature operations hub and a payment integration platform.`,
   },
   {
     id: 'consulting',
@@ -216,7 +248,7 @@ export const workExperiences: WorkExperience[] = [
     type: 'Full-time',
     location: 'Jakarta, Indonesia · Remote',
     summary:
-      'Primary backend engineer for 10+ financial service systems — payment, credit facility, and POS platforms on AWS Serverless, owned end to end from architecture to production.',
+      'Backend engineer for 10+ financial service systems — payment, credit facility, and POS platforms on AWS Serverless, owned end to end from architecture to production.',
     achievements: [
       'Delivered 100+ REST APIs for financial platforms covering payment, credit facilities, and POS',
       'Owned 10+ financial service projects end to end — architecture, implementation, and production delivery',
@@ -225,6 +257,7 @@ export const workExperiences: WorkExperience[] = [
       'Built cloud-native systems using AWS Serverless and event-driven architectures (Lambda, SQS, API Gateway)',
       'Secured all integrations with auth standards per requirement: OAuth 2.0, HMAC, JWT, RSA, AES-256',
       'Built an internal monitoring core platform from scratch — Laravel, React + Inertia.js, PostgreSQL & MySQL',
+      `Built Application Gateway from scratch — an internal platform for payment integration settings, with 2FA, audit logging, and ${GATEWAY_TESTS} automated tests`,
       'Refactored 10+ legacy services to clean architecture, improving long-term maintainability',
       'Initiated and architected NestJS migration from Lambda microservices — established platform modernization blueprint',
     ],
@@ -264,7 +297,7 @@ export const workExperiences: WorkExperience[] = [
     type: 'Full-time',
     location: 'Pekanbaru, Indonesia · On-site',
     summary:
-      'Backend engineer for the AUDY healthcare system — a healthcare appointment and operations platform. Owned API development, performance engineering, and service integrations.',
+      'Backend engineer for AUDY, a healthcare management platform for clinics and hospitals. Owned API development, performance engineering, and service integrations.',
     achievements: [
       'Built 50+ REST APIs using Node.js, LoopBack, Express.js, and MongoDB',
       'Improved reporting performance by 700% through MongoDB query tuning and materialized views',
@@ -430,7 +463,9 @@ export const projects: Project[] = [
       'k6',
     ],
     featured: true,
-    architectureLabel: '3 Lambda Projects → NestJS Monolith · Prisma · OpenTelemetry',
+    architectureBefore: ['3 × Lambda project · one per partner'],
+    architectureLabel: 'NestJS Monolith · Prisma · OpenTelemetry',
+    experienceId: 'indogrosir',
   },
   {
     id: 'financial-platform',
@@ -463,6 +498,33 @@ export const projects: Project[] = [
     ],
     featured: true,
     architectureLabel: 'Apps → API GW → Lambda → PostgreSQL → Bank APIs → S3 · MFT',
+    experienceId: 'indogrosir',
+  },
+  {
+    id: 'application-gateway',
+    title: 'Application Gateway — Payment Integration Platform',
+    subtitle: 'Internal Platform · Built from Scratch · Completed, Pre-launch',
+    description:
+      `Designed and built from scratch an internal platform for managing payment integrations, credentials, and client API keys across development, staging, and production. Full-stack Laravel and React with TypeScript, with role-based access, two-factor authentication, audit logging, and ${GATEWAY_TESTS} automated tests.`,
+    type: 'Enterprise',
+    status: 'Private · NDA',
+    metrics: [`${GATEWAY_TESTS} Automated Tests`, 'Built Solo from Scratch', 'Multi-Environment Config', '2FA · RBAC · Audit Log'],
+    techStack: [
+      'Laravel',
+      'PHP',
+      'React',
+      'TypeScript',
+      'Inertia.js',
+      'PostgreSQL',
+      'AWS',
+      'Tailwind CSS',
+      'shadcn/ui',
+      'Pest',
+      'Larastan',
+    ],
+    featured: true,
+    architectureLabel: 'Admin → Laravel + React Platform → Payment Services · RBAC · 2FA · audit log',
+    experienceId: 'indogrosir',
   },
   {
     id: 'monitoring-platform',
@@ -472,7 +534,7 @@ export const projects: Project[] = [
       'Designed and built a unified full-stack internal operations platform from scratch, consolidating and replacing legacy systems to centralize monitoring, reporting, and management workflows. Laravel backend with a React + Inertia.js frontend — featuring multi-database switching, AWS service integration, and vendor/bank API connectivity for financial operations teams.',
     type: 'Enterprise',
     status: 'Private · NDA',
-    metrics: ['150+ Features Built', '20+ Internal Users', 'Replaced Legacy Platform', 'Consolidated into 1 System'],
+    metrics: [`${MONITORING_FEATURES} Features Built`, 'Multi-Database Switching', 'Replaced Legacy Platform', 'Consolidated into 1 System'],
     techStack: [
       'Laravel',
       'PHP',
@@ -494,19 +556,21 @@ export const projects: Project[] = [
     ],
     featured: true,
     architectureLabel: 'Web Admin → Laravel → Multi-DB · AWS · Vendor/Bank APIs',
+    experienceId: 'indogrosir',
   },
   {
     id: 'healthcare-system',
     title: 'AUDY Healthcare System',
     subtitle: '50+ APIs · 700% Performance Improvement · 10+ Integrations',
     description:
-      'Backend engineer for the AUDY healthcare system — built and maintained 50+ REST APIs spanning core platform operations, reporting pipelines, third-party integrations, and insurance notification delivery with EJS-templated messages. Integrated 10+ internal and external services and delivered 700% reporting performance improvement via MongoDB aggregation pipeline rewrite and materialized views. Automated cleanup of 10,000+ appointment records and resolved 30+ production issues while maintaining system stability.',
+      'Backend engineer for AUDY, a healthcare management platform for clinics and hospitals — built and maintained 50+ REST APIs spanning core platform operations, reporting pipelines, third-party integrations, and insurance notification delivery with EJS-templated messages. Integrated 10+ internal and external services and delivered 700% reporting performance improvement via MongoDB aggregation pipeline rewrite and materialized views. Automated cleanup of 10,000+ appointment records and resolved 30+ production issues while maintaining system stability.',
     type: 'Enterprise',
     status: 'Private · NDA',
     metrics: ['700% Faster Reporting', '10,000+ Records Automated', '30+ Issues Resolved', 'Zero Data Loss'],
     techStack: ['Node.js', 'JavaScript', 'MongoDB', 'Mongoose', 'LoopBack', 'Redis', 'JWT', 'node-cron', 'Query Optimization', 'Axios', 'EJS'],
     featured: true,
     architectureLabel: 'Apps → LoopBack → MongoDB Aggregation · Redis · node-cron',
+    experienceId: 'audy',
   },
   {
     id: 'mern-ecommerce',
@@ -520,7 +584,6 @@ export const projects: Project[] = [
     techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'JWT', 'Redux', 'Axios'],
     coverImage: mernSs1,
     githubUrl: 'https://github.com/yogigaek/ecommerce-app',
-    detailPath: '/projects/mern-ecommerce',
     featured: false,
     screenshots: [
       { title: 'Home Page', image: mernSs1, description: 'Landing page with featured products and hero banner' },
@@ -555,7 +618,6 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/yogigaek/App-Market-Place',
     demoUrl: 'https://share.vidyard.com/watch/bn6RHvzhVw7DxAbSPRM3UD',
     demoLabel: 'Demo Video',
-    detailPath: '/projects/php-ecommerce',
     featured: false,
     screenshots: [
       { title: 'Home Page', image: phpDet1, description: 'Marketplace home with product listings' },

@@ -1,10 +1,19 @@
 import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
-import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, CheckCircle2, Download, MessageCircle, Send } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 import Reveal from '@/components/ui/Reveal'
 import Button from '@/components/ui/Button'
-import { AVAILABILITY, CONTACT_INFO, EMAILJS_CONFIG, LOCATION, capitalize, whatsappLink } from '@/data'
+import {
+  AVAILABILITY,
+  CONTACT_INFO,
+  CONTACT_PATHS,
+  CV,
+  EMAILJS_CONFIG,
+  LOCATION,
+  capitalize,
+  whatsappLink,
+} from '@/data'
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error'
 
@@ -71,6 +80,53 @@ export default function Contact() {
           title="Let's talk about your backend role or project"
           subtitle="Reach me directly on WhatsApp or email, or send a message with the form."
         />
+
+        <Reveal>
+          <ul className="mb-8 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2 lg:mb-12">
+            <ContactPath
+              eyebrow={CONTACT_PATHS.hiring.eyebrow}
+              title={CONTACT_PATHS.hiring.title}
+              body={CONTACT_PATHS.hiring.body}
+              actions={
+                <>
+                  <Button href={CV.onePage.href} download={CV.onePage.filename} variant="solid" size="sm">
+                    <Download size={15} aria-hidden="true" />
+                    Download CV ({CV.onePage.pages} page)
+                  </Button>
+                  <Button href={CONTACT_INFO.linkedin} target="_blank" rel="noopener noreferrer" variant="secondary" size="sm">
+                    LinkedIn
+                    <ArrowUpRight size={15} aria-hidden="true" />
+                    <span className="sr-only">(opens in new tab)</span>
+                  </Button>
+                </>
+              }
+            />
+            <ContactPath
+              eyebrow={CONTACT_PATHS.project.eyebrow}
+              title={CONTACT_PATHS.project.title}
+              body={CONTACT_PATHS.project.body}
+              actions={
+                <>
+                  <Button
+                    href={whatsappLink(CONTACT_PATHS.project.whatsappMessage)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="solid"
+                    size="sm"
+                  >
+                    <MessageCircle size={15} aria-hidden="true" />
+                    Discuss on WhatsApp
+                    <span className="sr-only">(opens in new tab)</span>
+                  </Button>
+                  <Button href="#services" variant="secondary" size="sm">
+                    See services
+                    <ArrowRight size={15} aria-hidden="true" />
+                  </Button>
+                </>
+              }
+            />
+          </ul>
+        </Reveal>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
           <Reveal className="lg:h-full">
@@ -216,5 +272,23 @@ export default function Contact() {
         </div>
       </div>
     </section>
+  )
+}
+
+interface ContactPathProps {
+  eyebrow: string
+  title: string
+  body: string
+  actions: React.ReactNode
+}
+
+function ContactPath({ eyebrow, title, body, actions }: ContactPathProps) {
+  return (
+    <li className="flex flex-col bg-surface p-5 sm:p-6 md:p-8">
+      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">{eyebrow}</p>
+      <h3 className="mt-2 font-display text-xl font-semibold text-text-primary">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-text-secondary">{body}</p>
+      <div className="mt-auto flex flex-wrap gap-3 pt-6">{actions}</div>
+    </li>
   )
 }

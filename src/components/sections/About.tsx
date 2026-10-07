@@ -1,12 +1,22 @@
 import SectionHeader from '@/components/ui/SectionHeader'
 import Reveal from '@/components/ui/Reveal'
-import { AVAILABILITY, CORE_STACK, LOCATION, getOutcome, profileAbout, quickFacts, workExperiences, yearsOfExperience } from '@/data'
+import {
+  ABOUT_BUILT,
+  AVAILABILITY,
+  CORE_STACK,
+  LOCATION,
+  ROLE,
+  getOutcome,
+  profileAbout,
+  quickFacts,
+  workExperiences,
+  yearsOfExperience,
+} from '@/data'
 
 export default function About() {
   const currentJob = workExperiences.find((job) => job.current) ?? workExperiences[0]
   const apis = getOutcome('apis')
   const integrations = getOutcome('integrations')
-  const reporting = getOutcome('reporting')
   const coreStack =
     CORE_STACK.length > 2
       ? `${CORE_STACK.slice(0, -1).join(', ')}, and ${CORE_STACK[CORE_STACK.length - 1]}`
@@ -44,21 +54,17 @@ export default function About() {
 
           <Reveal delay={0.08} className="space-y-5 text-[15px] leading-relaxed text-text-secondary md:text-base">
             <p className="font-display text-xl leading-snug text-text-primary md:text-2xl">
-              Backend Software Engineer ({yearsOfExperience} yrs) building the systems that move money —{' '}
+              {ROLE} ({yearsOfExperience} yrs) building the systems that move money —{' '}
               {apis.value} production APIs and {integrations.value} system integrations across fintech and healthcare.
             </p>
             <p>
-              At {currentJob.company}, primary backend engineer for
-              {currentJob.client ? ` ${currentJob.client}` : ' the client'} — payment, credit facility, and POS
-              systems on AWS Serverless, every integration secured to the partner&apos;s own standard (OAuth 2.0,
-              HMAC, JWT, RSA, AES-256), shipped with zero missed deadlines and typically in about half the
-              planned time.
+              At {currentJob.company}, building payment, credit facility, and POS systems on AWS Serverless for
+              {currentJob.client ? ` ${currentJob.client}` : ' the client'} — every integration secured to the
+              partner&apos;s own standard (OAuth 2.0, HMAC, JWT, RSA, AES-256), shipped with zero missed deadlines
+              and typically in about half the planned time.
             </p>
             <p>
-              Core stack: {coreStack}. Led the migration of three Lambda
-              projects into a single NestJS platform with OpenTelemetry observability, built an internal
-              operations platform from scratch (150+ features for 20+ users), and made reporting on a healthcare
-              platform {reporting.value} faster through MongoDB query tuning.
+              Core stack: {coreStack}. {ABOUT_BUILT}
             </p>
             <p className="text-text-primary">
               Open to {AVAILABILITY.join(', ')} — from {LOCATION.city} ({LOCATION.timezone}).

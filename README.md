@@ -1,4 +1,4 @@
-<h1 align="center">Muhammad Yogi — Backend Software Engineer</h1>
+<h1 align="center">Muhammad Yogi — Backend / Full-Stack Engineer</h1>
 
 <div align="center">
 
@@ -17,8 +17,8 @@
 
 ## Professional Profile
 
-Backend Software Engineer (4+ yrs) building mission-critical financial and healthcare systems across
-cloud-native, distributed architectures. Currently the primary backend engineer for **10+ financial
+Backend / Full-Stack Engineer (4+ yrs) building mission-critical financial and healthcare systems across
+cloud-native, distributed architectures. Currently delivering **10+ financial
 service projects end-to-end** at PT 360 Teknologi Indonesia — payment platforms, credit facilities,
 POS, and 40+ bank/partner integrations, built on **AWS Serverless** (Lambda, SQS, API Gateway) with
 auth secured per requirement (OAuth 2.0, HMAC, JWT, RSA, AES-256). Architected the
@@ -82,13 +82,17 @@ to Vercel via its native Git integration and gated by a GitHub Actions CI workfl
   per look in [`src/index.css`](src/index.css); the initial look is set by an inline script in
   `index.html` before first paint.
 - [`vercel.json`](vercel.json) — SPA rewrite so deep links such as `/projects/mern-ecommerce` load
-  directly, plus cache and security headers.
+  directly, `cleanUrls` so `/projects/<id>` serves the build's `projects/<id>.html`, plus cache and security headers.
+- [`src/lib/seo.ts`](src/lib/seo.ts) + the `projectPages` plugin in [`vite.config.ts`](vite.config.ts) — `npm run build`
+  writes a static `dist/projects/<id>.html` per project page (own title, description, canonical, so link previews and
+  crawlers that skip JavaScript see the project) and regenerates `dist/sitemap.xml`; `public/sitemap.xml` is a dev copy.
 
 ### Routes
 
 | Route | Description |
 |-------|-------------|
 | `/` | Main portfolio (all sections) |
+| `/projects/nestjs-migration`, `/projects/financial-platform`, `/projects/application-gateway`, `/projects/monitoring-platform`, `/projects/healthcare-system` | Enterprise case studies (NDA): role, overview, outcomes, architecture |
 | `/projects/mern-ecommerce` | MERN e-commerce project detail |
 | `/projects/php-ecommerce` | PHP e-commerce project detail |
 | `/detail`, `/detail2` | Legacy redirects to the routes above |
