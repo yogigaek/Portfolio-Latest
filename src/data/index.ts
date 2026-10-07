@@ -252,14 +252,14 @@ export const workExperiences: WorkExperience[] = [
     achievements: [
       'Delivered 100+ REST APIs for financial platforms covering payment, credit facilities, and POS',
       'Owned 10+ financial service projects end to end — architecture, implementation, and production delivery',
+      'Led the migration of 3 Lambda projects into one NestJS platform — 50+ APIs rebuilt and OpenTelemetry observability added, with every integration contract preserved',
       'Integrated 40+ internal and external systems (banks, partners, enterprise platforms) with zero missed deadlines',
       'Delivered projects ahead of schedule, typically in about half the planned time, across a multi-year enterprise engagement',
       'Built cloud-native systems using AWS Serverless and event-driven architectures (Lambda, SQS, API Gateway)',
       'Secured all integrations with auth standards per requirement: OAuth 2.0, HMAC, JWT, RSA, AES-256',
-      'Built an internal monitoring core platform from scratch — Laravel, React + Inertia.js, PostgreSQL & MySQL',
+      `Built an internal monitoring core platform from scratch (${MONITORING_FEATURES} features) — Laravel, React + Inertia.js, PostgreSQL & MySQL`,
       `Built Application Gateway from scratch — an internal platform for payment integration settings, with 2FA, audit logging, and ${GATEWAY_TESTS} automated tests`,
       'Refactored 10+ legacy services to clean architecture, improving long-term maintainability',
-      'Initiated and architected NestJS migration from Lambda microservices — established platform modernization blueprint',
     ],
     techStack: [
       'Node.js',
@@ -417,6 +417,7 @@ export const skills: Skill[] = [
   // Observability & Tools
   { name: 'Prometheus & Grafana', level: 'Advanced', category: 'Observability & Tools' },
   { name: 'CloudWatch', level: 'Advanced', category: 'Observability & Tools' },
+  { name: 'OpenTelemetry', level: 'Advanced', category: 'Observability & Tools' },
   { name: 'Swagger / OpenAPI', level: 'Advanced', category: 'Observability & Tools' },
   { name: 'Postman', level: 'Advanced', category: 'Observability & Tools' },
   { name: 'AI-Assisted Development', level: 'Advanced', category: 'Observability & Tools' },
@@ -426,8 +427,6 @@ export const skills: Skill[] = [
   { name: 'Inertia.js', level: 'Advanced', category: 'Frontend' },
   { name: 'Tailwind CSS', level: 'Proficient', category: 'Frontend' },
   { name: 'Material UI', level: 'Advanced', category: 'Frontend' },
-  { name: 'Bootstrap', level: 'Advanced', category: 'Frontend' },
-  { name: 'HTML/CSS', level: 'Advanced', category: 'Frontend' },
 ]
 
 export const projects: Project[] = [
@@ -475,7 +474,7 @@ export const projects: Project[] = [
       'Enterprise-grade financial API platform: payment processing, credit facilities, POS, and 40+ integrations with banks, partners, and enterprise platforms. Full settlement pipeline — client apps through API Gateway, Lambda processing, PostgreSQL persistence, outbound bank API calls, S3 document storage, and MFT settlement file exchange. Built and owned the full system on AWS Serverless — from architecture to production.',
     type: 'Enterprise',
     status: 'Private · NDA',
-    metrics: ['100+ Production APIs', '40+ System Integrations', '10+ Projects Delivered', 'Delivered Ahead of Schedule'],
+    metrics: ['100+ Production APIs', '40+ System Integrations', '10+ Projects Delivered', '~2x Faster Than Planned'],
     techStack: [
       'Node.js',
       'JavaScript',

@@ -46,8 +46,8 @@ one monolith with full OpenTelemetry observability.
 | **Messaging & Integration** | RabbitMQ, WebSocket, API Integration, Webhook Integration |
 | **Security & Auth** | OAuth 2.0, JWT, HMAC, AES-256, RSA Encryption |
 | **Testing & Quality** | Unit Testing, Integration Testing, Jest, Supertest, k6, Performance Tuning |
-| **Observability & Tools** | Prometheus & Grafana, CloudWatch, Swagger/OpenAPI, Postman, AI-Assisted Development |
-| **Frontend** | React, Inertia.js, Tailwind CSS, Material UI, Bootstrap, HTML/CSS |
+| **Observability & Tools** | OpenTelemetry, Prometheus & Grafana, CloudWatch, Swagger/OpenAPI, Postman, AI-Assisted Development |
+| **Frontend** | React, Inertia.js, Tailwind CSS, Material UI |
 
 ---
 
