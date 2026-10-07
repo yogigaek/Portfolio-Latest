@@ -56,10 +56,13 @@ export interface Project {
   githubUrl?: string
   demoUrl?: string
   demoLabel?: string
-  detailPath?: string
   screenshots?: ProjectScreenshot[]
   featured: boolean
   architectureLabel?: string
+  /** systems the project replaced — when set, the architecture panel reads as before → after */
+  architectureBefore?: string[]
+  /** `WorkExperience.id` the project was delivered under — gives the case study page its role and period */
+  experienceId?: string
 }
 
 export interface Testimonial {

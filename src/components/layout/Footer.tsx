@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ArrowUp, ArrowUpRight, MessageCircle } from 'lucide-react'
-import { CONTACT_INFO, LOCATION } from '@/data'
+import { CONTACT_INFO, LOCATION, ROLE } from '@/data'
 import { cn } from '@/lib/utils'
 
 // stamped at build time, shown in WIB: every deploy is a content update, so the date never goes stale
@@ -49,7 +49,7 @@ export default function Footer() {
           <div>
             <p className="font-display text-lg font-semibold text-text-primary">Muhammad Yogi</p>
             <p className="mt-1 text-sm text-text-secondary">
-              Backend Software Engineer · {LOCATION.city}, {LOCATION.country} ({LOCATION.timezone})
+              {ROLE} · {LOCATION.city}, {LOCATION.country} ({LOCATION.timezone})
             </p>
           </div>
 
