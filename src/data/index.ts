@@ -586,12 +586,12 @@ export const projects: Project[] = [
   {
     id: 'mern-ecommerce',
     title: 'E-Commerce Platform (MERN)',
-    subtitle: 'Full-Stack Shopping Platform — Complete Checkout & Admin Dashboard',
+    subtitle: 'Full-Stack Shopping Platform — Catalog, Cart, Checkout & Invoices',
     description:
-      'Full-featured e-commerce platform with product browsing, search & filtering, shopping cart, checkout flow, order history, and user account management. Includes an admin dashboard for managing products and orders.',
+      'Full-featured e-commerce platform with product search & filtering, shopping cart, checkout, order history with invoices, and a customer dashboard. Customers manage their orders, shipping addresses, and account details, while the Express API limits product, category, and tag management to admins through role-based access control.',
     type: 'Personal',
     status: 'Public',
-    metrics: ['Complete Order Flow', 'Admin Dashboard', 'Role-Based Auth', 'Search & Filter'],
+    metrics: ['Complete Order Flow', 'Customer Dashboard', 'Role-Based Access Control', 'Search & Filter'],
     techStack: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'JWT', 'Redux', 'Axios'],
     coverImage: mernSs1,
     githubUrl: 'https://github.com/yogigaek/ecommerce-app',
