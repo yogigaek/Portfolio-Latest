@@ -570,6 +570,20 @@ export const projects: Project[] = [
     experienceId: 'audy',
   },
   {
+    id: 'webhook-relay',
+    title: 'Webhook Relay — Reliable Payment Webhooks in Go',
+    subtitle: 'Personal Project · Verifies, Deduplicates & Relays Provider Webhooks',
+    description:
+      'Go service that receives payment-provider webhooks, verifies their HMAC signatures, stores each event exactly once in PostgreSQL, and relays it to an internal service with retries, exponential backoff, and a dead-letter state. Built around the ways webhook integrations fail: duplicate deliveries, forged or replayed requests, and a destination that is down. Tested against a real database in CI, with OpenTelemetry traces linking each delivery back to the request that received it.',
+    type: 'Open Source',
+    status: 'Public',
+    metrics: ['Idempotent Under Concurrency', 'HMAC Signatures + Replay Window', 'Retries · Backoff · Dead-Letter', 'Safe With Multiple Workers'],
+    techStack: ['Go', 'PostgreSQL', 'pgx', 'OpenTelemetry', 'Jaeger', 'Docker', 'GitHub Actions'],
+    githubUrl: 'https://github.com/yogigaek/webhook-relay',
+    featured: false,
+    architectureLabel: 'Payment Provider → Go Relay → PostgreSQL → Delivery Worker → Internal Service · HMAC · OpenTelemetry',
+  },
+  {
     id: 'mern-ecommerce',
     title: 'E-Commerce Platform (MERN)',
     subtitle: 'Full-Stack Shopping Platform — Complete Checkout & Admin Dashboard',
