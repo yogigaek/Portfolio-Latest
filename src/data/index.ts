@@ -624,7 +624,7 @@ export const projects: Project[] = [
     type: 'Personal',
     status: 'Public',
     metrics: ['WhatsApp Purchase Flow', 'Admin Dashboard', 'Product Management', 'Category System'],
-    techStack: ['PHP 7', 'MySQL', 'HTML', 'CSS', 'JavaScript', 'jQuery'],
+    techStack: ['PHP', 'MySQL', 'HTML', 'CSS', 'CKEditor'],
     coverImage: phpDet1,
     githubUrl: 'https://github.com/yogigaek/App-Market-Place',
     demoUrl: 'https://share.vidyard.com/watch/bn6RHvzhVw7DxAbSPRM3UD',
