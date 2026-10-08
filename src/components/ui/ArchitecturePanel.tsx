@@ -4,10 +4,12 @@ interface ArchitecturePanelProps {
   id: string
   label: string
   before?: string[]
+  /** public source: the closing status line must not claim the work is under NDA */
+  isPublic?: boolean
   className?: string
 }
 
-export default function ArchitecturePanel({ id, label, before, className }: ArchitecturePanelProps) {
+export default function ArchitecturePanel({ id, label, before, isPublic = false, className }: ArchitecturePanelProps) {
   const segments = label.split('→').map((s) => s.trim())
   const [lastNode, ...extras] = segments[segments.length - 1].split('·').map((s) => s.trim())
   const nodes = [...segments.slice(0, -1), lastNode]
@@ -59,7 +61,7 @@ export default function ArchitecturePanel({ id, label, before, className }: Arch
           </p>
         )}
         <p aria-hidden="true" className="mt-2">
-          <span className="text-term-muted">status</span> <span className="text-term-ok">private · under NDA</span>
+          <span className="text-term-muted">status</span> <span className="text-term-ok">{isPublic ? 'public · open source' : 'private · under NDA'}</span>
         </p>
       </div>
     </div>

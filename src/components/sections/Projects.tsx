@@ -20,7 +20,9 @@ const VISIBLE_TAGS_MOBILE = 5
 
 export default function Projects() {
   const featured = projects.filter((p) => p.featured)
-  const earlier = projects.filter((p) => !p.featured)
+  // public code gets its own visible row: the collapsed list below is for older personal builds
+  const openSource = projects.filter((p) => !p.featured && p.type === 'Open Source')
+  const earlier = projects.filter((p) => !p.featured && p.type !== 'Open Source')
 
   return (
     <section id="work" aria-labelledby="work-title" className="section-padding border-t border-border">
@@ -40,6 +42,21 @@ export default function Projects() {
             </Reveal>
           ))}
         </div>
+
+        {openSource.length > 0 && (
+          <div className="mt-16">
+            <p className="mb-5 font-mono text-[12px] uppercase tracking-[0.14em] text-text-muted">
+              Open source · code you can read
+            </p>
+            <div className="space-y-6">
+              {openSource.map((project) => (
+                <Reveal as="article" key={project.id}>
+                  <CaseStudy project={project} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        )}
 
         {earlier.length > 0 && (
           <Reveal className="mt-16">
@@ -79,6 +96,7 @@ function CaseStudy({ project }: { project: Project }) {
   const hiddenTags = project.techStack.length - VISIBLE_TAGS
   const hiddenTagsMobile = project.techStack.length - VISIBLE_TAGS_MOBILE
   const descriptionId = `${project.id}-description`
+  const isPublic = project.status === 'Public'
 
   return (
     <TiltCard
@@ -109,7 +127,7 @@ function CaseStudy({ project }: { project: Project }) {
           {expanded ? 'Show less' : 'Read more'}
         </button>
 
-        <MetricList metrics={project.metrics} label="Outcomes" className="mt-6" />
+        <MetricList metrics={project.metrics} label={isPublic ? 'Highlights' : 'Outcomes'} className="mt-6" />
 
         <ul className="mt-6 flex flex-wrap gap-1.5" aria-label="Tech stack">
           {project.techStack.slice(0, VISIBLE_TAGS).map((tech, i) => (
@@ -139,6 +157,19 @@ function CaseStudy({ project }: { project: Project }) {
             <span className="sr-only">: {project.title}</span>
           </Link>
         )}
+        {project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent-hover transition-colors hover:text-text-primary"
+          >
+            <GitHubIcon size={14} />
+            View source on GitHub
+            <ArrowUpRight size={14} aria-hidden="true" />
+            <span className="sr-only">: {project.title} (opens in new tab)</span>
+          </a>
+        )}
       </div>
 
       {project.architectureLabel && (
@@ -146,6 +177,7 @@ function CaseStudy({ project }: { project: Project }) {
           id={project.id}
           label={project.architectureLabel}
           before={project.architectureBefore}
+          isPublic={isPublic}
           className="border-t border-border lg:border-l lg:border-t-0"
         />
       )}

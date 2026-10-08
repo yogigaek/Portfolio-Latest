@@ -68,11 +68,12 @@ to Vercel via its native Git integration and gated by a GitHub Actions CI workfl
 - [`src/components/layout/`](src/components/layout/) — Topbar (sticky nav + mobile drawer), Footer,
   MainLayout.
 - [`src/components/sections/`](src/components/sections/) — Hero (claim, terminal, proof strip),
-  Outcomes, About (quick facts), Projects (enterprise case studies + earlier projects), Work Experience
+  Outcomes, About (quick facts), Projects (enterprise case studies + open source + earlier projects), Work Experience
   (timeline + education), Tech Stack, Services (with EN/ID consulting one-pager PDFs), Testimonials,
   Contact.
 - [`src/components/pages/ProjectDetail.tsx`](src/components/pages/ProjectDetail.tsx) — lazy-loaded
-  screenshot walkthrough page for each public project.
+  project page: a case study for each enterprise project, a screenshot walkthrough for each project with
+  screenshots (`hasProjectPage` in `src/lib/seo.ts`). Open-source projects link to their repository instead.
 - [`src/components/ui/`](src/components/ui/) — reusable primitives (Button, Badge, SectionHeader,
   Reveal, GitHubIcon).
 - [`src/hooks/useScrollSpy.ts`](src/hooks/useScrollSpy.ts) — active nav section tracking.
