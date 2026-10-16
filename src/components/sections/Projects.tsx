@@ -17,6 +17,8 @@ import type { Project } from '@/types'
 const VISIBLE_TAGS = 9
 // phones get a shorter case study: every card is otherwise several screens tall
 const VISIBLE_TAGS_MOBILE = 5
+const LINK_CLASS =
+  'inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent-hover transition-colors hover:text-text-primary'
 
 export default function Projects() {
   const featured = projects.filter((p) => p.featured)
@@ -97,6 +99,7 @@ function CaseStudy({ project }: { project: Project }) {
   const hiddenTagsMobile = project.techStack.length - VISIBLE_TAGS_MOBILE
   const descriptionId = `${project.id}-description`
   const isPublic = project.status === 'Public'
+  const hasLinks = !!project.demoUrl || hasProjectPage(project) || !!project.githubUrl
 
   return (
     <TiltCard
@@ -147,28 +150,44 @@ function CaseStudy({ project }: { project: Project }) {
           )}
         </ul>
 
-        {hasProjectPage(project) && (
-          <Link
-            to={projectPath(project)}
-            className="mt-6 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent-hover transition-colors hover:text-text-primary"
-          >
-            Read case study
-            <ArrowRight size={14} aria-hidden="true" />
-            <span className="sr-only">: {project.title}</span>
-          </Link>
-        )}
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent-hover transition-colors hover:text-text-primary"
-          >
-            <GitHubIcon size={14} />
-            View source on GitHub
-            <ArrowUpRight size={14} aria-hidden="true" />
-            <span className="sr-only">: {project.title} (opens in new tab)</span>
-          </a>
+        {hasLinks && (
+          <div className="mt-6 flex flex-wrap gap-x-6">
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={LINK_CLASS}
+              >
+                {project.demoLabel ?? 'Live demo'}
+                <ArrowUpRight size={14} aria-hidden="true" />
+                <span className="sr-only">: {project.title} (opens in new tab)</span>
+              </a>
+            )}
+            {hasProjectPage(project) && (
+              <Link
+                to={projectPath(project)}
+                className={LINK_CLASS}
+              >
+                {project.experienceId ? 'Read case study' : 'Feature walkthrough'}
+                <ArrowRight size={14} aria-hidden="true" />
+                <span className="sr-only">: {project.title}</span>
+              </Link>
+            )}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={LINK_CLASS}
+              >
+                <GitHubIcon size={14} />
+                View source on GitHub
+                <ArrowUpRight size={14} aria-hidden="true" />
+                <span className="sr-only">: {project.title} (opens in new tab)</span>
+              </a>
+            )}
+          </div>
         )}
       </div>
 
