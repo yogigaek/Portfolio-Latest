@@ -237,12 +237,26 @@ function WalkthroughBody({ project }: { project: Project }) {
               className="inline-flex items-center gap-2 bg-solid hover:bg-solid/90 px-5 py-2.5 rounded-xl text-sm font-semibold text-solid-ink transition-all duration-200"
             >
               <ExternalLink size={16} aria-hidden="true" />
-              {project.demoLabel ?? 'Live Demo'}
+              {project.demoLabel ?? 'Live demo'}
               <span className="sr-only">(opens in new tab)</span>
             </a>
           )}
         </div>
       </div>
+
+      {project.architectureLabel && (
+        <section aria-labelledby="architecture-title" className="mb-12">
+          <h2 id="architecture-title" className="font-display text-2xl font-bold text-text-primary mb-4">
+            How it works
+          </h2>
+          <ArchitecturePanel
+            id={project.id}
+            label={project.architectureLabel}
+            isPublic={project.status === 'Public'}
+            className="overflow-hidden rounded-2xl border border-border"
+          />
+        </section>
+      )}
 
       {/* Screenshots grid */}
       <div>

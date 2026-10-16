@@ -45,6 +45,12 @@ import phpDet8 from '@/assets/projects/php-ecommerce/det8.png'
 import phpDet9 from '@/assets/projects/php-ecommerce/det9.png'
 import phpDet10 from '@/assets/projects/php-ecommerce/det10.png'
 import phpDet11 from '@/assets/projects/php-ecommerce/det11.png'
+import rakitHome from '@/assets/projects/rakit/home.png'
+import rakitTeardown from '@/assets/projects/rakit/teardown.png'
+import rakitConfigurator from '@/assets/projects/rakit/configurator.png'
+import rakitProduct from '@/assets/projects/rakit/product.png'
+import rakitOrder from '@/assets/projects/rakit/order.png'
+import rakitAdmin from '@/assets/projects/rakit/admin.png'
 
 export { profileAbout }
 
@@ -568,6 +574,45 @@ export const projects: Project[] = [
     featured: true,
     architectureLabel: 'Apps → LoopBack → MongoDB Aggregation · Redis · node-cron',
     experienceId: 'audy',
+  },
+  {
+    id: 'rakit',
+    title: 'Rakit — E-bike Parts Store with a 3D Configurator',
+    subtitle: 'Open Source · Full-Stack · Bootcamp Capstone, Rebuilt',
+    description:
+      'Full-stack e-bike parts store with a 3D configurator, where the NestJS server decides every price, compatibility rule and stock change. Visitors build the Rakit E-1 part by part in 3D, drawn in code with three.js, or buy any part on its own. Checkout takes each part’s stock with a guarded update in one PostgreSQL transaction, an idempotency key makes a retried checkout return the same order, Midtrans payment notifications are accepted only with a valid SHA-512 signature and the exact amount, and unpaid orders expire and release their stock. Covered by API tests against a real database and Playwright browser tests in CI.',
+    type: 'Open Source',
+    status: 'Public',
+    metrics: ['Last Unit Sold Exactly Once', 'Idempotent Checkout', 'Signed Payment Webhooks', 'API + Browser Tests in CI'],
+    techStack: [
+      'TypeScript',
+      'React',
+      'three.js',
+      'React Three Fiber',
+      'NestJS',
+      'Prisma',
+      'PostgreSQL',
+      'zod',
+      'Midtrans',
+      'Vitest',
+      'Playwright',
+      'GitHub Actions',
+      'Vercel',
+      'Render',
+      'Neon',
+    ],
+    githubUrl: 'https://github.com/yogigaek/gear-store',
+    demoUrl: 'https://yogi-store.vercel.app',
+    featured: false,
+    architectureLabel: 'React + three.js → NestJS API → PostgreSQL · Midtrans Snap · signed webhooks',
+    screenshots: [
+      { title: 'Home', image: rakitHome, description: 'The E-1 in 3D, built from three.js geometry in code rather than a model file, with the frame colour picked live.' },
+      { title: 'Teardown', image: rakitTeardown, description: 'Scrolling takes the bike apart into its eight modules, each labelled with its own price from the catalogue.' },
+      { title: 'Configurator', image: rakitConfigurator, description: 'One part per slot. A part that cannot go with the current build stays listed, disabled, with the reason; the server prices the bike.' },
+      { title: 'Product Page', image: rakitProduct, description: 'Every part is also sold on its own, shown in 3D with its specifications; a bike part opens the configurator with it fitted.' },
+      { title: 'Order', image: rakitOrder, description: 'A bike is ordered as its parts, each taking its own stock, with the order’s status timeline.' },
+      { title: 'Admin Dashboard', image: rakitAdmin, description: 'Revenue, a daily chart and the orders to ship. The shared demo admin can open everything but save nothing.' },
+    ],
   },
   {
     id: 'webhook-relay',
