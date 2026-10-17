@@ -57,7 +57,7 @@ Code you can read, shown in the **Open source** block of the Work section.
 
 | Project | What it is | Links |
 | --- | --- | --- |
-| 🚲 **Rakit** | E-bike parts store with a 3D configurator: NestJS + PostgreSQL decide every price, rule and stock change; oversell-safe checkout, idempotent orders, signed Midtrans webhooks; API and browser tests in CI | [Live demo](https://yogi-store.vercel.app) · [Case study](https://muhammadyogi.vercel.app/projects/rakit) · [Source](https://github.com/yogigaek/gear-store) |
+| 🚲 **Rakit** | E-bike parts store with a 3D configurator: NestJS + PostgreSQL decide every price, rule and stock change; oversell-safe checkout, idempotent orders, signed Midtrans webhooks; API and browser tests in CI | [Live demo](https://yogi-store.vercel.app) · [Walkthrough](https://muhammadyogi.vercel.app/projects/rakit) · [Source](https://github.com/yogigaek/gear-store) |
 | 🐹 **Webhook Relay** | Go service that verifies payment-provider webhooks, stores each event once in PostgreSQL and relays it with retries, backoff and a dead-letter state | [Source](https://github.com/yogigaek/webhook-relay) |
 
 ---
@@ -90,7 +90,7 @@ React + TypeScript site built with Vite and Tailwind CSS:
 - 💻 **A typed `whoami` terminal**, editorial numbered sections, and a sticky topbar with an accessible mobile drawer.
 - 🎞️ **Framer Motion reveals** that respect `prefers-reduced-motion`.
 - ✉️ **An EmailJS-powered contact form.**
-- ✅ Deployed to **Vercel** through its native Git integration and gated by a **GitHub Actions** CI workflow on every push and PR.
+- ✅ Deployed to **Vercel** through its native Git integration and gated by a **GitHub Actions** CI workflow on pushes to `main`/`yogi` and pull requests to `main`.
 
 **Where things live**
 

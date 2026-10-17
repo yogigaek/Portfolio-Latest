@@ -9,7 +9,7 @@ import ArchitecturePanel from '@/components/ui/ArchitecturePanel'
 import CaseStudyBadges from '@/components/ui/CaseStudyBadges'
 import MetricList from '@/components/ui/MetricList'
 import { CV, NDA_NOTE, projects, whatsappLink, workExperiences } from '@/data'
-import { HOME_HEAD, applyHead, hasProjectPage, projectHead, projectPath } from '@/lib/seo'
+import { HOME_HEAD, applyHead, hasProjectPage, isCaseStudy, projectHead, projectPath } from '@/lib/seo'
 import type { Project } from '@/types'
 
 export default function ProjectDetail() {
@@ -18,7 +18,7 @@ export default function ProjectDetail() {
   const found = projects.find((p) => p.id === id)
   const project = found && hasProjectPage(found) ? found : undefined
   // enterprise work (under NDA) is told through its role and architecture; personal builds through screenshots
-  const isCaseStudy = !!project?.experienceId
+  const caseStudy = project ? isCaseStudy(project) : false
   // replace: browser Back from the portfolio should not land on this project page again
   const handleBack = () => navigate('/#work', { replace: true })
 
@@ -49,7 +49,7 @@ export default function ProjectDetail() {
           Back to Portfolio
         </button>
 
-        {isCaseStudy ? <CaseStudyBody project={project} /> : <WalkthroughBody project={project} />}
+        {caseStudy ? <CaseStudyBody project={project} /> : <WalkthroughBody project={project} />}
 
         {/* Bottom nav */}
         <div className="mt-16 flex flex-col items-center gap-6 border-t border-border pt-10 text-center">
@@ -282,7 +282,7 @@ function WalkthroughBody({ project }: { project: Project }) {
               </div>
               <img
                 src={screenshot.image}
-                alt={screenshot.title}
+                alt={`${project.title}: ${screenshot.title}`}
                 className="w-full object-cover"
                 width={800}
                 height={500}

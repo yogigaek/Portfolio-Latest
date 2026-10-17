@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowUpRight, ChevronRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, ChevronRight, Globe } from 'lucide-react'
 import GitHubIcon from '@/components/ui/GitHubIcon'
 import SectionHeader from '@/components/ui/SectionHeader'
 import Reveal from '@/components/ui/Reveal'
@@ -11,7 +11,7 @@ import CaseStudyBadges from '@/components/ui/CaseStudyBadges'
 import MetricList from '@/components/ui/MetricList'
 import { cn } from '@/lib/utils'
 import { NDA_NOTE, projects } from '@/data'
-import { hasProjectPage, projectPath } from '@/lib/seo'
+import { hasProjectPage, isCaseStudy, projectPath } from '@/lib/seo'
 import type { Project } from '@/types'
 
 const VISIBLE_TAGS = 9
@@ -159,6 +159,7 @@ function CaseStudy({ project }: { project: Project }) {
                 rel="noopener noreferrer"
                 className={LINK_CLASS}
               >
+                <Globe size={14} aria-hidden="true" />
                 {project.demoLabel ?? 'Live demo'}
                 <ArrowUpRight size={14} aria-hidden="true" />
                 <span className="sr-only">: {project.title} (opens in new tab)</span>
@@ -169,7 +170,7 @@ function CaseStudy({ project }: { project: Project }) {
                 to={projectPath(project)}
                 className={LINK_CLASS}
               >
-                {project.experienceId ? 'Read case study' : 'Feature walkthrough'}
+                {isCaseStudy(project) ? 'Read case study' : 'Feature walkthrough'}
                 <ArrowRight size={14} aria-hidden="true" />
                 <span className="sr-only">: {project.title}</span>
               </Link>
