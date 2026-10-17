@@ -58,7 +58,12 @@ export function applyHead(head: PageHead) {
 
 /** A project gets its own page when it is an enterprise case study or has a screenshot walkthrough. */
 export function hasProjectPage(project: Project): boolean {
-  return !!project.experienceId || (project.screenshots?.length ?? 0) > 0
+  return isCaseStudy(project) || (project.screenshots?.length ?? 0) > 0
+}
+
+/** Enterprise work, delivered under a role: its page is a case study; any other project page is a walkthrough. */
+export function isCaseStudy(project: Project): boolean {
+  return !!project.experienceId
 }
 
 /** In-app route. The build writes the page to `${projectPath()}.html`, which Vercel serves here via cleanUrls. */

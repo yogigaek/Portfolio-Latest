@@ -578,7 +578,7 @@ export const projects: Project[] = [
   {
     id: 'rakit',
     title: 'Rakit — E-bike Parts Store with a 3D Configurator',
-    subtitle: 'Open Source · Full-Stack · Bootcamp Capstone, Rebuilt',
+    subtitle: 'Full-Stack · NestJS + React · Bootcamp Capstone, Rebuilt',
     description:
       'Full-stack e-bike parts store with a 3D configurator, where the NestJS server decides every price, compatibility rule and stock change. Visitors build the Rakit E-1 part by part in 3D, drawn in code with three.js, or buy any part on its own. Checkout takes each part’s stock with a guarded update in one PostgreSQL transaction, an idempotency key makes a retried checkout return the same order, Midtrans payment notifications are accepted only with a valid SHA-512 signature and the exact amount, and unpaid orders expire and release their stock. Covered by API tests against a real database and Playwright browser tests in CI.',
     type: 'Open Source',
