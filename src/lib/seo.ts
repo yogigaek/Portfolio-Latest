@@ -20,7 +20,7 @@ export interface PageHead {
 // then fail the build until index.html is edited by hand.
 const STATS = `${getOutcome('apis').value} production APIs, ${getOutcome('integrations').value} system integrations`
 const PLACE = `${LOCATION.city}, ${LOCATION.country} (${LOCATION.timezone})`
-const OPEN_TO = 'open to full-time roles, international remote work and consulting'
+const OPEN_TO = 'open to full-time roles and consulting'
 
 /**
  * The home page's tags, built from the same data as the site. index.html is static and keeps its own copy;

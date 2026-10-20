@@ -99,14 +99,14 @@ export const LOCATION = {
   timezoneName: 'WIB',
 }
 
-export const AVAILABILITY = ['full-time roles', 'international remote work', 'consulting']
+export const AVAILABILITY = ['full-time roles', 'consulting']
 
 // Contact opens with one path per visitor: a recruiter hiring, or a client with a project
 export const CONTACT_PATHS = {
   hiring: {
     eyebrow: 'For recruiters',
     title: 'Hiring for your team?',
-    body: 'Open to full-time backend and full-stack roles, including international remote work.',
+    body: 'Open to full-time backend and full-stack roles.',
   },
   project: {
     eyebrow: 'For clients',

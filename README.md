@@ -194,7 +194,7 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key
 - 🧠 **LeetCode:** [leetcode.com/u/yogigaek](https://leetcode.com/u/yogigaek/)
 - 💬 **WhatsApp:** [+62 821 6971 3434](https://wa.me/6282169713434)
 
-🟢 Open to full-time roles, international remote work, and consulting.
+🟢 Open to full-time roles and consulting.
 
 ---
 
