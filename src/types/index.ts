@@ -63,6 +63,15 @@ export interface Project {
   architectureBefore?: string[]
   /** `WorkExperience.id` the project was delivered under — gives the case study page its role and period */
   experienceId?: string
+  /** a phone app of the same product (shown on walkthrough pages): summary, where to get it, 720×1460 screenshots */
+  mobile?: ProjectMobile
+}
+
+export interface ProjectMobile {
+  summary: string
+  downloadUrl: string
+  downloadLabel: string
+  screenshots: ProjectScreenshot[]
 }
 
 export interface Testimonial {
