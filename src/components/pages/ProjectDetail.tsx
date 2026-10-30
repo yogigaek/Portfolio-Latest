@@ -222,7 +222,7 @@ function WalkthroughBody({ project }: { project: Project }) {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-surface border border-border hover:border-border-hover px-5 py-2.5 rounded-xl text-sm text-text-secondary hover:text-text-primary transition-all duration-200"
+              className="inline-flex min-h-11 items-center gap-2 bg-surface border border-border hover:border-border-hover px-5 py-2.5 rounded-xl text-sm text-text-secondary hover:text-text-primary transition-all duration-200"
             >
               <GitHubIcon size={16} />
               View on GitHub
@@ -234,7 +234,7 @@ function WalkthroughBody({ project }: { project: Project }) {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-solid hover:bg-solid/90 px-5 py-2.5 rounded-xl text-sm font-semibold text-solid-ink transition-all duration-200"
+              className="inline-flex min-h-11 items-center gap-2 bg-solid hover:bg-solid/90 px-5 py-2.5 rounded-xl text-sm font-semibold text-solid-ink transition-all duration-200"
             >
               <ExternalLink size={16} aria-hidden="true" />
               {project.demoLabel ?? 'Live demo'}
@@ -297,6 +297,39 @@ function WalkthroughBody({ project }: { project: Project }) {
           ))}
         </div>
       </div>
+
+      {project.mobile && (
+        <section aria-labelledby="mobile-title" className="mt-16">
+          <h2 id="mobile-title" className="font-display text-2xl font-bold text-text-primary mb-4">
+            Mobile app
+          </h2>
+          <p className="text-text-secondary text-base leading-relaxed max-w-3xl mb-6">{project.mobile.summary}</p>
+          <a
+            href={project.mobile.downloadUrl}
+            className="inline-flex min-h-11 items-center gap-2 bg-solid hover:bg-solid/90 px-5 py-2.5 rounded-xl text-sm font-semibold text-solid-ink transition-all duration-200 mb-8"
+          >
+            <Download size={16} aria-hidden="true" />
+            {project.mobile.downloadLabel}
+          </a>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {project.mobile.screenshots.map((screenshot) => (
+              <figure key={screenshot.title} className="min-w-0">
+                <img
+                  src={screenshot.image}
+                  alt={`${project.title}, Android app: ${screenshot.title}`}
+                  className="w-full h-auto rounded-[1.25rem] border border-border bg-surface"
+                  width={720}
+                  height={1460}
+                  loading="lazy"
+                />
+                <figcaption className="mt-3 text-sm leading-relaxed text-text-secondary">
+                  <span className="font-semibold text-text-primary">{screenshot.title}.</span> {screenshot.description}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
     </>
   )
 }

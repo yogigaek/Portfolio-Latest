@@ -57,7 +57,7 @@ Code you can read, shown in the **Open source** block of the Work section.
 
 | Project | What it is | Links |
 | --- | --- | --- |
-| 🚲 **Rakit** | E-bike parts store with a 3D configurator: NestJS + PostgreSQL decide every price, rule and stock change; oversell-safe checkout, idempotent orders, signed Midtrans webhooks; API and browser tests in CI | [Live demo](https://yogi-store.vercel.app) · [Walkthrough](https://muhammadyogi.vercel.app/projects/rakit) · [Source](https://github.com/yogigaek/gear-store) |
+| 🚲 **Rakit** | E-bike parts store with a 3D configurator: NestJS + PostgreSQL decide every price, rule and stock change; oversell-safe checkout, idempotent orders, signed Midtrans webhooks; API and browser tests in CI; Android app (React Native + Expo) | [Live demo](https://yogi-store.vercel.app) · [Walkthrough](https://muhammadyogi.vercel.app/projects/rakit) · [Source](https://github.com/yogigaek/gear-store) |
 | 🐹 **Webhook Relay** | Go service that verifies payment-provider webhooks, stores each event once in PostgreSQL and relays it with retries, backoff and a dead-letter state | [Source](https://github.com/yogigaek/webhook-relay) |
 
 ---
@@ -114,7 +114,7 @@ React + TypeScript site built with Vite and Tailwind CSS:
 | --- | --- |
 | `/` | Main portfolio (all sections) |
 | `/projects/nestjs-migration`, `/projects/financial-platform`, `/projects/application-gateway`, `/projects/monitoring-platform`, `/projects/healthcare-system` | 🔒 Enterprise case studies (NDA): role, overview, outcomes, architecture |
-| `/projects/rakit` | 🚲 Rakit walkthrough: how it works, screenshots, live demo and source |
+| `/projects/rakit` | 🚲 Rakit walkthrough: how it works, screenshots, the Android app, live demo and source |
 | `/projects/mern-ecommerce` | 🛒 MERN e-commerce project detail |
 | `/projects/php-ecommerce` | 🛍️ PHP e-commerce project detail |
 | `/detail`, `/detail2` | ↪️ Legacy redirects to the routes above |

@@ -51,6 +51,10 @@ import rakitConfigurator from '@/assets/projects/rakit/configurator.png'
 import rakitProduct from '@/assets/projects/rakit/product.png'
 import rakitOrder from '@/assets/projects/rakit/order.png'
 import rakitAdmin from '@/assets/projects/rakit/admin.png'
+import rakitMobileHome from '@/assets/projects/rakit/mobile-home.jpg'
+import rakitMobileProduct from '@/assets/projects/rakit/mobile-product.jpg'
+import rakitMobileCheckout from '@/assets/projects/rakit/mobile-checkout.jpg'
+import rakitMobileOrder from '@/assets/projects/rakit/mobile-order.jpg'
 
 export { profileAbout }
 
@@ -428,6 +432,8 @@ export const skills: Skill[] = [
 
   // Frontend
   { name: 'React', level: 'Advanced', category: 'Frontend' },
+  { name: 'React Native', level: 'Proficient', category: 'Frontend' },
+  { name: 'Expo', level: 'Proficient', category: 'Frontend' },
   { name: 'Inertia.js', level: 'Advanced', category: 'Frontend' },
   { name: 'Tailwind CSS', level: 'Proficient', category: 'Frontend' },
   { name: 'Material UI', level: 'Advanced', category: 'Frontend' },
@@ -580,7 +586,7 @@ export const projects: Project[] = [
     title: 'Rakit — E-bike Parts Store with a 3D Configurator',
     subtitle: 'Full-Stack · NestJS + React · Bootcamp Capstone, Rebuilt',
     description:
-      'Full-stack e-bike parts store with a 3D configurator, where the NestJS server decides every price, compatibility rule and stock change. Visitors build the Rakit E-1 part by part in 3D, drawn in code with three.js, or buy any part on its own. Checkout takes each part’s stock with a guarded update in one PostgreSQL transaction, an idempotency key makes a retried checkout return the same order, Midtrans payment notifications are accepted only with a valid SHA-512 signature and the exact amount, and unpaid orders expire and release their stock. Covered by API tests against a real database and Playwright browser tests in CI.',
+      'Full-stack e-bike parts store with a 3D configurator, where the NestJS server decides every price, compatibility rule and stock change. Visitors build the Rakit E-1 part by part in 3D, drawn in code with three.js, or buy any part on its own. Checkout takes each part’s stock with a guarded update in one PostgreSQL transaction, an idempotency key makes a retried checkout return the same order, Midtrans payment notifications are accepted only with a valid SHA-512 signature and the exact amount, and unpaid orders expire and release their stock. Covered by API tests against a real database and Playwright browser tests in CI. An Android app, built with React Native and Expo, uses the same API.',
     type: 'Open Source',
     status: 'Public',
     metrics: ['Last Unit Sold Exactly Once', 'Idempotent Checkout', 'Signed Payment Webhooks', 'API + Browser Tests in CI'],
@@ -592,6 +598,8 @@ export const projects: Project[] = [
       'NestJS',
       'Prisma',
       'PostgreSQL',
+      'React Native',
+      'Expo',
       'zod',
       'Midtrans',
       'Vitest',
@@ -613,6 +621,18 @@ export const projects: Project[] = [
       { title: 'Order', image: rakitOrder, description: 'A bike is ordered as its parts, each taking its own stock, with the order’s status timeline.' },
       { title: 'Admin Dashboard', image: rakitAdmin, description: 'Revenue, a daily chart and the orders to ship. The shared demo admin can open everything but save nothing.' },
     ],
+    mobile: {
+      summary:
+        'An Android app built with Expo and React Native on the same API and zod contracts as the web. The cart stays on the phone until sign-in, then joins the account under a merge key, so a merge cut off mid-way is sent again and never adds twice. The refresh token lives in the phone’s secure storage. Buy now orders a single part and leaves the cart alone, and checkout lists every line before payment in Midtrans sandbox.',
+      downloadUrl: 'https://yogi-store.vercel.app/app',
+      downloadLabel: 'Download the Android APK (94 MB)',
+      screenshots: [
+        { title: 'Home', image: rakitMobileHome, description: 'The E-1 and the ways in: browse parts, or configure in 3D on the web.' },
+        { title: 'Part', image: rakitMobileProduct, description: 'Specs, finishes, and Add to cart or Buy now in a bar at the bottom.' },
+        { title: 'Checkout', image: rakitMobileCheckout, description: 'Every line the order will hold, the shipping address and the total.' },
+        { title: 'Order', image: rakitMobileOrder, description: 'A paid order, read back from the API.' },
+      ],
+    },
   },
   {
     id: 'webhook-relay',
