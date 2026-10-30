@@ -163,6 +163,15 @@ npm run build    # type-check + production build in dist/
 npm run preview  # preview the production build
 ```
 
+The CVs, consulting one-pagers and link preview image in `public/` are generated from [`scripts/pdf/`](scripts/pdf/):
+
+```bash
+npx playwright install chromium-headless-shell  # once, the browser the scripts print with
+npm run cv        # both CVs; fails if the 1-page CV is not full, a bullet wraps, or the text reads out of order
+npm run onepager  # consulting one-pagers (EN + ID)
+npm run og-image  # public/og-image.png
+```
+
 ### 🔑 Environment variables
 
 Create a `.env.local` file in the root directory for the contact form (EmailJS):

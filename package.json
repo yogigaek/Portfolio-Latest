@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "cv": "node scripts/pdf/cv.mjs",
+    "onepager": "node scripts/pdf/onepager.mjs",
+    "og-image": "node scripts/pdf/og-image.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
