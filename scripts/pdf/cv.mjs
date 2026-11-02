@@ -83,10 +83,10 @@ const one = page(
   'Muhammad Yogi — Backend / Full-Stack Engineer — CV',
   `${header('Backend / Full-Stack Engineer | Fintech &amp; Healthcare | Node.js · NestJS · PHP/Laravel · Go · Python · AWS')}
 <h2>Summary</h2>
-<p class="summary">Backend / Full-Stack Engineer with 4+ years building production systems that move money: 150+ APIs and 50+ system
-integrations across fintech and healthcare. Backend engineer for 10+ financial service projects on AWS Serverless
-(Node.js/NestJS, PHP/Laravel). Led a <span class="nobreak">Lambda-to-NestJS</span> platform migration, built an internal operations platform from
-scratch, and made healthcare reporting 700% faster. Open to full-time backend and <span class="nobreak">full-stack</span> roles and consulting.</p>
+<p class="summary">Backend / Full-Stack Engineer with 4+ years building production systems for fintech and healthcare: 150+ APIs and
+50+ integrations, 40+ of them with banks and partners. Delivered 10+ financial service projects on AWS Serverless with
+Node.js/NestJS and PHP/Laravel, led a <span class="nobreak">Lambda-to-NestJS</span> platform migration, and built internal platforms end to end with
+Laravel and React, plus an open-source store with a React Native app. Open to full-time backend and <span class="nobreak">full-stack</span> roles.</p>
 
 <h2>Experience</h2>
 ${job({
@@ -159,11 +159,10 @@ const full = page(
   'Muhammad Yogi — Backend / Full-Stack Engineer — CV (full)',
   `${header('Backend / Full-Stack Engineer | Fintech &amp; Healthcare | Node.js · NestJS · PHP/Laravel · Go · Python · AWS')}
 <h2>Summary</h2>
-<p class="summary">Backend / Full-Stack Engineer with 4+ years building production systems that move money: 150+ APIs and 50+ system
-integrations across fintech and healthcare. Backend engineer for 10+ financial service projects on AWS Serverless
-(Node.js/NestJS, PHP/Laravel), with 40+ bank and partner integrations and zero missed deadlines. Led a
-<span class="nobreak">Lambda-to-NestJS</span> platform migration, built an internal operations platform from scratch, and made healthcare reporting
-700% faster. Open to full-time backend and <span class="nobreak">full-stack</span> roles and consulting.</p>
+<p class="summary">Backend / Full-Stack Engineer with 4+ years building production systems for fintech and healthcare: 150+ APIs and
+50+ integrations, 40+ of them with banks and partners. Delivered 10+ financial service projects on AWS Serverless with
+Node.js/NestJS and PHP/Laravel, led a <span class="nobreak">Lambda-to-NestJS</span> platform migration, and built internal platforms end to end with
+Laravel and React, plus an open-source store with a React Native app. Open to full-time backend and <span class="nobreak">full-stack</span> roles.</p>
 
 <h2>Experience</h2>
 ${job({
